@@ -2,11 +2,12 @@
 <html id="html">
   <head>
     <title>Work 'n Coffee</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>Work 'n Coffee: WiFi rating</h1>
-    
+    <h5>*v1 solo para CABA</h5>
     <form>
         <label for="coffee-name">Cafeteria:</label>
         <input type="text" id="coffee-name" name="coffee-name" required>
@@ -245,12 +246,8 @@
   sortedData.forEach((data) => {
     const tr = document.createElement("tr");
     const wifiCell = document.createElement("td");
-
-    // create an array of 5 empty stars
     const stars = Array.from({ length: data.Wifi }, () => '\u2606');
-    // fill in the stars up to the wifi value
     stars.fill('\u2605', 0, data.Wifi);
-    // join the stars into a string
     const starString = stars.join('');
     wifiCell.textContent = starString;
 

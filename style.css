@@ -1,3 +1,20 @@
+.ios {
+    zoom: 3;
+}
+.android {
+    zoom: 3;
+}
+.web {
+    zoom: 1.2;
+    max-width: fit-content;
+    margin: auto;
+}
+
+h5 {
+    max-width: fit-content;
+    margin-left: 70%;
+    margin-top: -10px
+}
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {
     border-collapse: collapse;

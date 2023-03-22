@@ -14,6 +14,24 @@ else if (theme == 'dark') {
   document.querySelector("html").classList = "dark";
 }
 
+var os = navigator.userAgent;
+if (os.includes('iPhone')) {
+  var sistema = 'ios';
+}
+else if (os.includes('Android')) {
+  var sistema = 'android';
+}
+else if(navigator.userAgent.indexOf("Chrome") > -1 ||
+  navigator.userAgent.indexOf("Safari") > -1 ||
+  navigator.userAgent.indexOf("Opera") > -1 ||
+  navigator.userAgent.indexOf("Firefox") > -1 ||
+  navigator.userAgent.indexOf("Macintosh") > -1) {
+  var sistema = 'web'  
+}
+let system = document.getElementById('html')
+system.classList.add(sistema);
+
+
 
 let reviews = [];
 

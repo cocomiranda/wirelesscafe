@@ -1,0 +1,65 @@
+/* Set the border-collapse property to collapse to remove spaces between cells */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+/* tabla */
+tr {
+    border: 1px solid black;
+    padding: 8px;
+}
+/* header */
+th {
+    background-color: #4CAF50;
+    border-bottom: 1px solid black;
+    color: white;
+    padding: 6px;
+}
+/* filas */
+td {
+    border-bottom: 1px solid black;
+    border-right: 0.5px solid #c1c0bc;
+    padding: 8px;
+}
+td:last-child {
+    border-bottom: 0.5px solid black;
+    border-right: 1px solid black;
+    padding: 8px;
+}
+
+
+.dark tr {
+    border: 1px solid #c1c0bc;
+    padding: 8px;
+}
+.dark th {
+    background-color: #4CAF50;
+    border-bottom: 1px solid #c1c0bc;
+    color: white;
+    padding: 6px;
+}
+.dark td {
+    border-bottom: 1px solid #c1c0bc;
+    border-right: 0.5px solid #c1c0bc;
+    padding: 8px;
+}
+.dark td:last-child {
+    border-bottom: 0.5px solid #c1c0bc;
+    border-right: 1px solid #c1c0bc;
+    padding: 8px;
+}
+
+  
+.dark {
+    background-color: #14202b;
+    color: #e4e0d7;
+}
+
+
+
+
+.stars {
+    color: gold;
+}

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html id="html">
   <head>
-    <title>WirelessCafé</title>
+    <title>Work 'n Coffee</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>WirelessCafé: rating del wifi en cafeterias</h1>
+    <h1>Work 'n Coffee: WiFi rating</h1>
     
-    <form >
-        <label for="coffee-name">Nombre:</label>
+    <form>
+        <label for="coffee-name">Cafeteria:</label>
         <input type="text" id="coffee-name" name="coffee-name" required>
         <br><br>
         
@@ -21,18 +22,15 @@
             <option value="5">5 - Excelente</option>
         </select><br>
       
-        <label for="speed-down">Velocidad subida (mbps)</label>
+        <label for="speed-down">Velocidad bajada (Mbps)</label>
         <input type="number" min="0" id="speed-down" name="speed-down">
         <br>
-        <label for="speed-up">Velocidad bajada (mbps)</label>
+        <label for="speed-up">Velocidad subida (Mbps)</label>
         <input type="number" min="0" id="speed-up" name="speed-up">
         <br><br>
 
-        <label for="street">Calle:</label>
+        <label for="street">Direccion:</label>
         <input type="text" id="street" name="street">
-        <br>
-        <label for="nro">Numero:</label>
-        <input type="text" id="nro" name="nro">
         <br>
 
         <label for="barrio">Barrio:</label>
@@ -89,15 +87,194 @@
         </select>
         <br><br><br>
         
-        <button type="button" onclick="validateForm()">Enter</button>
+        <button type="button" id="insert" onclick="validateForm()">Enter</button>
         <!-- onsubmit="return validateForm()" -->
     </form>
     <br><br>
+
     <div id="formContents"></div>
-    <br>
+    <br><br>
+
+
+    <div>
+      <label>Barrio:&nbsp&nbsp</label>
+      <select id="filtro_barrio" name="filtro_barrio">
+          <option value="" disabled selected>-</option>
+          <option value="Agronomía">Agronomía</option>
+          <option value="Almagro">Almagro</option>
+          <option value="Balvanera">Balvanera</option>
+          <option value="Barracas">Barracas</option>
+          <option value="Belgrano">Belgrano</option>
+          <option value="Boedo">Boedo</option>
+          <option value="Caballito">Caballito</option>
+          <option value="Chacarita">Chacarita</option>
+          <option value="Coghlan">Coghlan</option>
+          <option value="Colegiales">Colegiales</option>
+          <option value="Constitución">Constitución</option>
+          <option value="Flores">Flores</option>
+          <option value="Floresta">Floresta</option>
+          <option value="La Boca">La Boca</option>
+          <option value="La Paternal">La Paternal</option>
+          <option value="Liniers">Liniers</option>
+          <option value="Mataderos">Mataderos</option>
+          <option value="Monte Castro">Monte Castro</option>
+          <option value="Monserrat">Monserrat</option>
+          <option value="Nueva Pompeya">Nueva Pompeya</option>
+          <option value="Núñez">Núñez</option>
+          <option value="Palermo">Palermo</option>
+          <option value="Parque Avellaneda">Parque Avellaneda</option>
+          <option value="Parque Chacabuco">Parque Chacabuco</option>
+          <option value="Parque Chas">Parque Chas</option>
+          <option value="Parque Patricios">Parque Patricios</option>
+          <option value="Puerto Madero">Puerto Madero</option>
+          <option value="Recoleta">Recoleta</option>
+          <option value="Retiro">Retiro</option>
+          <option value="Saavedra">Saavedra</option>
+          <option value="San Cristóbal">San Cristóbal</option>
+          <option value="San Nicolás">San Nicolás</option>
+          <option value="San Telmo">San Telmo</option>
+          <option value="Vélez Sársfield">Vélez Sársfield</option>
+          <option value="Versalles">Versalles</option>
+          <option value="Villa Crespo">Villa Crespo</option>
+          <option value="Villa del Parque">Villa del Parque</option>
+          <option value="Villa Devoto">Villa Devoto</option>
+          <option value="Villa Gral. Mitre">Villa Gral. Mitre</option>
+          <option value="Villa Lugano">Villa Lugano</option>
+          <option value="Villa Luro">Villa Luro</option>
+          <option value="Villa Ortúzar">Villa Ortúzar</option>
+          <option value="Villa Pueyrredón">Villa Pueyrredón</option>
+          <option value="Villa Real">Villa Real</option>
+          <option value="Villa Riachuelo">Villa Riachuelo</option>
+          <option value="Villa Santa Rita">Villa Santa Rita</option>
+          <option value="Villa Soldati">Villa Soldati</option>
+          <option value="Villa Urquiza">Villa Urquiza</option>
+      </select>
+      &nbsp&nbsp&nbsp&nbsp
+      <button onclick="resetFilterTable()">Show all</button>
+
+      <br><br>
+
+      <table id="cafe-data">
+        <thead>
+          <tr id="titulo">
+            <th>Cafetería</th>
+            <th>Wifi Rating</th>
+            <th>Bajada (Mbps)</th>
+            <th>Subida (Mbps)</th>
+            <th>Direccion</th>
+            <th>Barrio</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
   </body>
 
+
+
   <script src="content.js" type="application/javascript"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqHdRmzEy8iiWyULlQoBTZZntlvu51IK0",
+      authDomain: "wirelesscafe-f09a3.firebaseapp.com",
+      projectId: "wirelesscafe-f09a3",
+      storageBucket: "wirelesscafe-f09a3.appspot.com",
+      messagingSenderId: "1002846013610",
+      appId: "1:1002846013610:web:768fb84283af5b7e3468d3",
+      measurementId: "G-C5YPRML5XE"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+    import {getDatabase, ref, onValue, set}
+    from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+
+    const db = getDatabase();
+    var insertBtn = document.querySelector("#insert");
+    insertBtn.addEventListener('click', InsertData);
+
+    var nombre = document.querySelector("#coffee-name");
+    var wifi = document.querySelector("#wifi-rating");
+    var bajada = document.querySelector("#speed-down");
+    var subida = document.querySelector("#speed-up");
+    var calle = document.querySelector("#street");
+    var barrio = document.querySelector("#barrio");
+
+
+    function InsertData() {
+      set(ref(db, "cafes/"+ nombre.value),{
+          Name: nombre.value,
+          Wifi: wifi.value,
+          Down: bajada.value,
+          Up: subida.value,
+          Street: calle.value,
+          Neigbourhood: barrio.value
+      })
+      .then(()=>{
+          alert("Data added successfully");
+      })
+      .catch((error)=>{
+          alert(error);
+      });
+    }
+    
+
+    const tableBody = document.querySelector("#cafe-data tbody");
+
+    onValue(ref(db, "cafes"), (snapshot) => {
+  tableBody.innerHTML = "";
+  const sortedData = [];
+
+  snapshot.forEach((childSnapshot) => {
+    sortedData.push(childSnapshot.val());
+  });
+
+  sortedData.sort((a, b) => b.Wifi - a.Wifi);
+
+  sortedData.forEach((data) => {
+    const tr = document.createElement("tr");
+    const wifiCell = document.createElement("td");
+
+    // create an array of 5 empty stars
+    const stars = Array.from({ length: data.Wifi }, () => '\u2606');
+    // fill in the stars up to the wifi value
+    stars.fill('\u2605', 0, data.Wifi);
+    // join the stars into a string
+    const starString = stars.join('');
+    wifiCell.textContent = starString;
+
+    tr.innerHTML += `
+      <td>${data.Name}</td>
+      <td class="stars">${wifiCell.textContent}</td>
+      <td>${data.Down}</td>
+      <td>${data.Up}</td>
+      <td>${data.Street}</td>
+      <td>${data.Neigbourhood}</td>
+    `;
+    tableBody.appendChild(tr);
+  });
+});
+
+
+    
+
+
+
+      
+
+  </script>
+
 
 </html>
 

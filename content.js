@@ -1,3 +1,20 @@
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // dark mode
+  var theme = 'dark'
+}
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  // dark mode
+  var theme = 'light'
+}
+
+if (theme == 'light') {
+  document.querySelector("html").classList = "light";
+}
+else if (theme == 'dark') {
+  document.querySelector("html").classList = "dark";
+}
+
+
 let reviews = [];
 
 function printForm() {
@@ -6,14 +23,13 @@ function printForm() {
     var subida = document.getElementById("speed-up").value;
     var bajada = document.getElementById("speed-down").value;
     var calle = document.getElementById("street").value;
-    var numero = document.getElementById("nro").value;
     var barrio = document.getElementById("barrio").value;
     
     var formContents = "<br>***********************************************<br>" + 
                     "Nombe: " + nombre + "<br>" +
                     "WiFi : " + wifi + "/5<br>" +
                     "Subida: " + subida + "mbps - Bajada: " + bajada + "mbps<br>" +
-                    "Direccion: " + calle + " " + numero+ "<br>" +
+                    "Direccion: " + calle + "<br>" +
                     "Barrio: " + barrio + "<br>";
     // document.getElementById("formContents").innerHTML = formContents;
 
@@ -30,10 +46,33 @@ function validateForm() {
       alert("Please fill out all fields.");
       return false;
     }
-    else {
-        printForm()
-    }
-
     return true;
+}
+
+
+
+document.getElementById("filtro_barrio").addEventListener("change", filterTable);
+function filterTable() {
+  var inputBarrio = document.getElementById("filtro_barrio");
+  var filterBarrio = inputBarrio.value.toUpperCase();
+  
+
+  var table = document.getElementById("cafe-data");
+  var rows = table.getElementsByTagName("tr");
+
+  for (var i = 1; i < rows.length; i++) {
+    var barrio = rows[i].getElementsByTagName("td")[5].textContent;
+    var barrioMatch = barrio.toUpperCase().indexOf(filterBarrio) > -1;
+    if (barrioMatch) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
   }
+}
+function resetFilterTable() {
+  var inputBarrio = document.getElementById("filtro_barrio");
+  inputBarrio.value = "";
+  filterTable();
+}
 

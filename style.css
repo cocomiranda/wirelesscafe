@@ -10,10 +10,18 @@
     margin: auto;
 }
 
+h3 {
+    max-width: fit-content;
+    margin-top: -20px
+}
 h5 {
     max-width: fit-content;
-    margin-left: 70%;
+    margin-left: 60%;
     margin-top: -10px
+}
+
+form {
+    font-size: 20px;
 }
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {

@@ -4,6 +4,13 @@
 .android {
     zoom: 3;
 }
+.ios form{
+    font-size: 25px;
+}
+.android form{
+    font-size: 25px;
+}
+
 .web {
     zoom: 1.2;
     max-width: fit-content;
@@ -21,7 +28,7 @@ h5 {
 }
 
 form {
-    font-size: 20px;
+    font-size: 18px;
 }
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {

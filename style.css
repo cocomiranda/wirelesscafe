@@ -5,10 +5,10 @@
     zoom: 3;
 }
 .ios form{
-    font-size: 25px;
+    font-size: 35px;
 }
 .android form{
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .web {
@@ -86,7 +86,7 @@ td:last-child {
   
 .dark {
     background-color: #14202b;
-    color: #e4e0d7;
+    color: white;
 }
 
 

@@ -4,13 +4,18 @@
 .android {
     zoom: 3;
 }
-.ios form{
-    font-size: 45px;
+/* .ios form{
+    font-size: 38px;
 }
 .android form{
-    font-size: 45px;
+    font-size: 38px;
+} */
+.ios label{
+    font-size: 38px;
 }
-
+.android label{
+    font-size: 38px;
+}
 .web {
     zoom: 1.2;
     max-width: fit-content;

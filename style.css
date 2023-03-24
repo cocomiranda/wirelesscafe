@@ -2,11 +2,14 @@ html {
     font-family: "Trebuchet MS"; 
 }
 
-.ios h1,h3,label {
+.ios h1,h4 {
     zoom: 3;
 }
-.android h1,h3,label {
+.ios select,label,input,button {
     zoom: 3;
+}
+.ios table {
+    zoom: 2;
 }
 
 
@@ -15,7 +18,7 @@ html {
 
 
 
-h3 {
+h4 {
     max-width: fit-content;
     margin-top: -20px
 }

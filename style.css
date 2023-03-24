@@ -8,10 +8,10 @@ html {
     zoom: 3;
 }
 .ios label{
-    font-size: 35px;
+    font-size: 38px;
 }
 .android label{
-    font-size: 35px;
+    font-size: 38px;
 }
 
 .ios #tbody_cafes {

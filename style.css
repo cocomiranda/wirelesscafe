@@ -1,7 +1,7 @@
 html {
     font-family: "Trebuchet MS"; 
 }
-.ios {
+/* .ios {
     zoom: 3;
 }
 .android {
@@ -17,12 +17,6 @@ html {
     zoom: 1.2;
 }
 
-/* .ios #tbody_cafes {
-    font-size: 10px;
-}
-.android #tbody_cafes {
-    font-size: 10px;
-} */
 .ios #cafe-data {
     font-size: 10px;
 }
@@ -31,13 +25,10 @@ html {
 }
 
 
-
-
 .web {
-    zoom: 1.2;
     max-width: fit-content;
     margin: auto;
-}
+} */
 
 h3 {
     max-width: fit-content;

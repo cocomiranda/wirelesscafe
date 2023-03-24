@@ -4,37 +4,40 @@
     <title>Work 'n Coffee</title>
     <link rel="icon" type="image/x-icon" href="logo.png">
     <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
   </head>
   <body>
     <h1>Work 'n Coffee</h1>
-    <!-- <h3>Elegí una </h3> -->
+    <h4>Encontrá el café con el mejor WiFi</h4>
     <h5 style="color: red;">*v1 solo para CABA</h5>
     <form id="form">
-        <label for="coffee-name">Cafeteria:</label>
-        <input type="text" id="coffee-name" name="coffee-name" required>
+        <label for="coffee-name" style="display: none;">Cafeteria:</label>
+        <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
+        <span style="font-size: 11px; font-style: italic; display: none;">(*obligatorio)</span>
+        <label for="street" style="display: none;">Direccion:</label>
+        <input type="text" id="street" name="street" style="display: none;">
         <br><br>
         
-        <label for="wifi-rating">Rating WiFi:</label>
-        <select id="wifi-rating" name="wifi-rating" required>
-            <option value="" disabled selected>-</option>
-            <option value="1">1 - Muy Malo</option>
-            <option value="2">2 - Malo</option>
-            <option value="3">3 - Normal</option>
-            <option value="4">4 - Bueno</option>
-            <option value="5">5 - Excelente</option>
-        </select><br>
-      
-        <label for="speed-down">Velocidad bajada (Mbps)</label>
-        <input type="number" min="0" id="speed-down" name="speed-down">
-        <br>
-        <label for="speed-up">Velocidad subida (Mbps)</label>
-        <input type="number" min="0" id="speed-up" name="speed-up">
-        <br><br>
+        <label for="street">Cafeteria:&nbsp</label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
+        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        <body>
+          <div>
+            <div class="pac-card" id="pac-card">
+            </div>
+            <div id="map" style="height: 200px;"></div>
+            <div id="infowindow-content">
+              <span id="place-name" class="title"></span><br />
+              <span id="place-address"></span>
+            </div>
+          </div>
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtt1qJ3l8AhfdaDszw-P4RCWztmZI2YDE&callback=initMap&libraries=places&v=weekly"
+            defer
+          ></script>
+        </body>
 
-        <label for="street">Direccion:</label>
-        <input type="text" id="street" name="street">
         <br>
-
         <label for="barrio">Barrio:</label>
         <select id="barrio" name="barrio">
             <option value="" disabled selected>-</option>
@@ -87,18 +90,45 @@
             <option value="Villa Soldati">Villa Soldati</option>
             <option value="Villa Urquiza">Villa Urquiza</option>
         </select>
-        <br><br><br>
+        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        <br>
+
+        <br>
+        <label for="wifi-rating">Rating WiFi:</label>
+        <select id="wifi-rating" name="wifi-rating" required>
+            <option value="" disabled selected>-</option>
+            <option value="1">1 - Muy Malo</option>
+            <option value="2">2 - Malo</option>
+            <option value="3">3 - Normal</option>
+            <option value="4">4 - Bueno</option>
+            <option value="5">5 - Excelente</option>
+        </select>
+        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        <br>
+
+        <div style="display: none;">
+          <label for="speed-down">Velocidad bajada (Mbps)</label>
+          <input type="number" min="0" id="speed-down" name="speed-down">
+          <br>
+          <label for="speed-up">Velocidad subida (Mbps)</label>
+          <input type="number" min="0" id="speed-up" name="speed-up">
+        </div>
+        <br>
+
         
-        <button type="button" id="insert" onclick="validateForm()">Enter</button>
+        <button type="button" id="insert" style="margin-left: 40%;">Enter</button>
         <!-- onsubmit="return validateForm()" -->
     </form>
     <br><br>
 
+    
+
+
     <div id="formContents"></div>
     <br><br>
 
-
-    <div>
+    <!-- filtros de la tabla -->
+    <div id="resultado">
       <label id="filtro">Barrio:&nbsp&nbsp</label>
       <select id="filtro_barrio" name="filtro_barrio">
           <option value="" disabled selected>-</option>
@@ -155,14 +185,11 @@
       <button onclick="resetFilterTable()">Show all</button>
 
       <br><br>
-
       <table id="cafe-data">
         <thead>
           <tr id="titulo">
             <th>Cafetería</th>
             <th>Wifi Rating</th>
-            <th>Bajada (Mbps)</th>
-            <th>Subida (Mbps)</th>
             <th>Direccion</th>
             <th>Barrio</th>
           </tr>
@@ -172,6 +199,11 @@
       </table>
     </div>
   </body>
+
+  
+  
+
+
 
 
 
@@ -199,70 +231,187 @@
     const app = initializeApp(firebaseConfig);
 
 
-    import {getDatabase, ref, onValue, set}
+    import {getDatabase, ref, onValue, set, get, child, update}
     from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
     const db = getDatabase();
     var insertBtn = document.querySelector("#insert");
     insertBtn.addEventListener('click', InsertData);
 
-    var nombre = document.querySelector("#coffee-name");
-    var wifi = document.querySelector("#wifi-rating");
-    var bajada = document.querySelector("#speed-down");
-    var subida = document.querySelector("#speed-up");
-    var calle = document.querySelector("#street");
-    var barrio = document.querySelector("#barrio");
+    // var nombre = document.querySelector("#coffee-name");
+    // var wifi = document.querySelector("#wifi-rating");
+    // // var bajada = document.querySelector("#speed-down");
+    // // var subida = document.querySelector("#speed-up");
+    // var calle = document.querySelector("#street");
+    // var barrio = document.querySelector("#barrio");
 
+    var nombre;
+    var calle;
+    var registro;
 
-    function InsertData() {
-      set(ref(db, "cafes/"+ nombre.value),{
-          Name: nombre.value,
-          Wifi: wifi.value,
-          Down: bajada.value,
-          Up: subida.value,
-          Street: calle.value,
-          Neigbourhood: barrio.value
-      })
-      .then(()=>{
-          alert("Data added successfully");
-      })
-      .catch((error)=>{
-          alert(error);
-      });
+    function values(cafe,direc) {
+      nombre = cafe;
+      calle = direc;
+      document.getElementById("coffee-name").textContent = nombre;
+      document.getElementById("street").textContent = calle;
+      registro = (nombre + ", " + calle).replace(".","");
+      // console.log(registro);
     }
-    
+    // console.log(nombre)    
+    // console.log(calle)   
+
+
+
+
+    // function InsertData() {
+    //   var nombre = document.querySelector("#coffee-name");
+    //   var calle = document.querySelector("#street");
+    //   var barrio = document.getElementById("barrio");
+    //   var wifi = document.getElementById("wifi-rating");
+
+
+    //   if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
+    //     alert("Completar todos los campos obligatorios.");
+    //     return false;
+    //   }
+    //   else
+    //   {
+    //     set(ref(db, "cafes/"+ registro),{
+    //       Name: nombre.textContent,
+    //       Wifi: wifi.value,
+    //       Street: calle.textContent,
+    //       Neigbourhood: barrio.value
+    //     })
+    //     .then(()=>{
+    //         alert("Datos agregados correctamente.");
+    //     })
+    //     .catch((error)=>{
+    //         alert(error);
+    //     });
+    //   }      
+    // }
+
+
+
+  // function InsertData() {
+  //   var nombre = document.querySelector("#coffee-name");
+  //   var calle = document.querySelector("#street");
+  //   var barrio = document.getElementById("barrio");
+  //   var wifi = document.getElementById("wifi-rating");
+  //   // var registro = "12345"; // Replace with the actual value of registro
+
+  //   var cafesRef = ref(db, "cafes");
+
+  //   if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
+  //     alert("Completar todos los campos obligatorios.");
+  //     return false;
+  //   } else {
+  //     get(child(cafesRef, registro)).then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         alert("El registro ya existe en la base de datos.");
+  //       } else {
+  //         // Insert the data
+  //         set(child(cafesRef, registro), {
+  //           Name: nombre.textContent,
+  //           Wifi: wifi.value,
+  //           Street: calle.textContent,
+  //           Neigbourhood: barrio.value
+  //         })
+  //         .then(() => {
+  //           alert("Datos agregados correctamente.");
+  //         })
+  //         .catch((error) => {
+  //           alert(error);
+  //         });
+  //       }
+  //     });
+  //   }      
+  // }
+
+  function InsertData() {
+    var nombre = document.querySelector("#coffee-name");
+    var calle = document.querySelector("#street");
+    var barrio = document.getElementById("barrio");
+    var wifi = document.getElementById("wifi-rating");
+    // var registro = "12345"; // Replace with the actual value of registro
+
+    var cafesRef = ref(db, "cafes");
+
+    if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
+      alert("Completar todos los campos obligatorios.");
+      return false;
+    } else {
+      get(child(cafesRef, registro)).then((snapshot) => {
+        if (snapshot.exists()) {
+          // Update the data
+          var existingData = snapshot.val();
+          var existingWifi = parseFloat(existingData.Wifi);
+          var newWifi = (existingWifi + parseFloat(wifi.value)) / 2;
+          update(child(cafesRef, registro), {
+            Name: nombre.textContent,
+            Wifi: newWifi,
+            Street: calle.textContent,
+            Neigbourhood: barrio.value
+          })
+          .then(() => {
+            alert("Datos actualizados correctamente.");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+        } else {
+          // Insert the data
+          set(child(cafesRef, registro), {
+            Name: nombre.textContent,
+            Wifi: wifi.value,
+            Street: calle.textContent,
+            Neigbourhood: barrio.value
+          })
+          .then(() => {
+            alert("Datos agregados correctamente.");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+        }
+      });
+    }      
+  }
+
+
+
+    window.myFunction = values;
+
+
 
     const tableBody = document.querySelector("#cafe-data tbody");
-
     onValue(ref(db, "cafes"), (snapshot) => {
-  tableBody.innerHTML = "";
-  const sortedData = [];
+    tableBody.innerHTML = "";
+    const sortedData = [];
 
-  snapshot.forEach((childSnapshot) => {
-    sortedData.push(childSnapshot.val());
+    snapshot.forEach((childSnapshot) => {
+      sortedData.push(childSnapshot.val());
+    });
+
+    sortedData.sort((a, b) => b.Wifi - a.Wifi);
+
+    sortedData.forEach((data) => {
+      const tr = document.createElement("tr");
+      const wifiCell = document.createElement("td");
+      const stars = Array.from({ length: data.Wifi }, () => '\u2606');
+      stars.fill('\u2605', 0, data.Wifi);
+      const starString = stars.join('');
+      wifiCell.textContent = starString;
+
+      tr.innerHTML += `
+        <td>${data.Name}</td>
+        <td class="stars">${wifiCell.textContent}</td>
+        <td>${data.Street}</td>
+        <td>${data.Neigbourhood}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
   });
-
-  sortedData.sort((a, b) => b.Wifi - a.Wifi);
-
-  sortedData.forEach((data) => {
-    const tr = document.createElement("tr");
-    const wifiCell = document.createElement("td");
-    const stars = Array.from({ length: data.Wifi }, () => '\u2606');
-    stars.fill('\u2605', 0, data.Wifi);
-    const starString = stars.join('');
-    wifiCell.textContent = starString;
-
-    tr.innerHTML += `
-      <td>${data.Name}</td>
-      <td class="stars">${wifiCell.textContent}</td>
-      <td>${data.Down}</td>
-      <td>${data.Up}</td>
-      <td>${data.Street}</td>
-      <td>${data.Neigbourhood}</td>
-    `;
-    tableBody.appendChild(tr);
-  });
-});
 
 
     

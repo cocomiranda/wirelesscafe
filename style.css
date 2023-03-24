@@ -1,20 +1,17 @@
+html {
+    font-family: "Trebuchet MS"; 
+}
 .ios {
     zoom: 3;
 }
 .android {
     zoom: 3;
 }
-/* .ios form{
-    font-size: 38px;
-}
-.android form{
-    font-size: 38px;
-} */
 .ios label{
-    font-size: 30px;
+    font-size: 32px;
 }
 .android label{
-    font-size: 30px;
+    font-size: 32px;
 }
 .web {
     zoom: 1.2;
@@ -22,7 +19,7 @@
     margin: auto;
 }
 
-h3 {
+h4 {
     max-width: fit-content;
     margin-top: -20px
 }
@@ -34,6 +31,7 @@ h5 {
 
 form {
     font-size: 18px;
+    width: 100%;
 }
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {
@@ -95,8 +93,84 @@ td:last-child {
 }
 
 
-
-
 .stars {
     color: gold;
+}
+#resultado {
+    padding-bottom: 80px;
+}
+/* #resultado2 .tr {
+    height: 10px;
+    overflow-y: scroll;
+} */
+
+
+
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/* 
+  * Always set the map height explicitly to define the size of the div element
+  * that contains the map. 
+  */
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* 
+  * Optional: Makes the sample page fill the window. 
+  */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+#infowindow-content {
+  display: none;
+}
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  font-family: Roboto;
+  padding: 0;
+}
+
+
+#pac-input {
+  background-color: #fff;
+  font-family: "Trebuchet MS";
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 3px;
+  padding: 2 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+
+#place-name {
+    color: black;
+}
+#place-address {
+    color: black;
 }

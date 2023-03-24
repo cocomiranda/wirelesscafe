@@ -6,6 +6,9 @@ html {
     zoom: 3;
 }
 .ios select,label,input,button {
+    zoom: 2;
+}
+.ios label {
     zoom: 3;
 }
 .ios table {

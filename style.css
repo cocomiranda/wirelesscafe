@@ -15,10 +15,16 @@ html {
 }
 
 .ios #tbody_cafes {
-    font-size: 20px;
+    font-size: 10px;
 }
 .android #tbody_cafes {
-    font-size: 20px;
+    font-size: 10px;
+}
+.ios #cafe-data {
+    font-size: 10px;
+}
+.android #cafe-data {
+    font-size: 10px;
 }
 
 .web {

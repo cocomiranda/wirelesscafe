@@ -2,7 +2,8 @@ html {
     font-family: "Trebuchet MS"; 
 }
 
-.ios h1,h3 {
+
+.ios h1,h3,h5 {
     zoom: 3;
 }
 .ios select,label,input,button {
@@ -18,17 +19,40 @@ html {
     width: 200px;
 }
 
-.h1 {
-    padding-left: 100px;
+.android h1,h3,h5 {
+    zoom: 3;
+}
+.android select,label,input,button {
+    zoom: 2;
+}
+.android label {
+    zoom: 3;
+}
+.android table {
+    zoom: 2;
+}
+.android #pac-input {
+    width: 200px;
+}
+.dark #img {
+    filter: invert(100%);
 }
 
+.web h3,h5, #pac-input, button, label {
+    zoom: 1;
+}
 
+#img {
+    margin-left: 30px;
+    height: 35px;
+    width: 35px;
+}
 
-
-
+.h1 {
+    padding-left: 120px;
+}
 h3 {
     max-width: fit-content;
-    margin-top: -20px
 }
 h5 {
     max-width: fit-content;

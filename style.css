@@ -9,10 +9,12 @@ html {
 }
 
 .ios label{
-    font-size: 40px;
+    font-size: 32px;
+    zoom: 1.2;
 }
 .android label{
-    font-size: 40px;
+    font-size: 32px;
+    zoom: 1.2;
 }
 
 /* .ios #tbody_cafes {

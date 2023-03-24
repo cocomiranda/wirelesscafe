@@ -7,25 +7,29 @@ html {
 .android {
     zoom: 3;
 }
+
 .ios label{
-    font-size: 38px;
+    font-size: 40px;
 }
 .android label{
-    font-size: 38px;
+    font-size: 40px;
 }
 
-.ios #tbody_cafes {
+/* .ios #tbody_cafes {
     font-size: 10px;
 }
 .android #tbody_cafes {
     font-size: 10px;
-}
+} */
 .ios #cafe-data {
     font-size: 10px;
 }
 .android #cafe-data {
     font-size: 10px;
 }
+
+
+
 
 .web {
     zoom: 1.2;

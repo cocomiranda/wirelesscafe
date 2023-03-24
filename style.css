@@ -13,13 +13,21 @@ html {
 .android label{
     font-size: 32px;
 }
+
+.ios #tbody_cafes {
+    font-size: 20px;
+}
+.android #tbody_cafes {
+    font-size: 20px;
+}
+
 .web {
     zoom: 1.2;
     max-width: fit-content;
     margin: auto;
 }
 
-h4 {
+h3 {
     max-width: fit-content;
     margin-top: -20px
 }
@@ -99,6 +107,7 @@ td:last-child {
 #resultado {
     padding-bottom: 80px;
 }
+
 /* #resultado2 .tr {
     height: 10px;
     overflow-y: scroll;

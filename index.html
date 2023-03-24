@@ -9,18 +9,18 @@
   </head>
   <body>
     <h1>Work 'n Coffee</h1>
-    <h4>Encontrá el café con el mejor WiFi</h4>
+    <h3>Encontrá el café con el mejor WiFi</h3>
     <h5 style="color: red;">*v1 solo para CABA</h5>
     <form id="form">
-        <label for="coffee-name" style="display: none;">Cafeteria:</label>
+        <label for="coffee-name" style="display: none;">Cafeteria:<span style="font-size: 11px; font-style: italic; display: none;">(*obligatorio)</span></label>
         <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
-        <span style="font-size: 11px; font-style: italic; display: none;">(*obligatorio)</span>
+        
         <label for="street" style="display: none;">Direccion:</label>
         <input type="text" id="street" name="street" style="display: none;">
         <br><br>
         
-        <label for="street">Cafeteria:&nbsp</label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
-        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        <label for="street">Cafeteria:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)</span></label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
+        
         <body>
           <div>
             <div class="pac-card" id="pac-card">
@@ -38,7 +38,7 @@
         </body>
 
         <br>
-        <label for="barrio">Barrio:</label>
+        <label for="barrio">Barrio:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)</span></label>
         <select id="barrio" name="barrio">
             <option value="" disabled selected>-</option>
             <option value="Agronomía">Agronomía</option>
@@ -90,11 +90,11 @@
             <option value="Villa Soldati">Villa Soldati</option>
             <option value="Villa Urquiza">Villa Urquiza</option>
         </select>
-        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        
         <br>
 
         <br>
-        <label for="wifi-rating">Rating WiFi:</label>
+        <label for="wifi-rating">Rating WiFi:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)</span></label>
         <select id="wifi-rating" name="wifi-rating" required>
             <option value="" disabled selected>-</option>
             <option value="1">1 - Muy Malo</option>
@@ -103,7 +103,7 @@
             <option value="4">4 - Bueno</option>
             <option value="5">5 - Excelente</option>
         </select>
-        <span style="font-size: 11px; font-style: italic;">(*obligatorio)</span>
+        
         <br>
 
         <div style="display: none;">
@@ -194,7 +194,7 @@
             <th>Barrio</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody_cafes">
         </tbody>
       </table>
     </div>

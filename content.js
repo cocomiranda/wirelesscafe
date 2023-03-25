@@ -64,7 +64,7 @@ function validateForm() {
     
 
     if (nombre.value == "" || wifi.value == "" || barrio.value == "") {
-      alert("Please fill out all fields.");
+      alert("Complete todos los campos.");
       return false;
     }
     else

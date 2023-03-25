@@ -39,9 +39,17 @@ html {
 }
 .ios table {
     zoom: 2;
+
 }
 .ios #pac-input {
     width: 200px;
+}
+.ios .pac-item {
+    zoom: 2;
+    width: 200px;
+}
+.ios .pac-container.pac-logo.hdpi {
+    width: 400px;
 }
 
 
@@ -82,6 +90,13 @@ html {
 }
 .android #pac-input {
     width: 200px;
+}
+.android .pac-item {
+    zoom: 2;
+    width: 200px;
+}
+.android .pac-container.pac-logo.hdpi {
+    width: 400px;
 }
 
 
@@ -237,6 +252,7 @@ body {
 #map #infowindow-content {
   display: inline;
 }
+
 
 .pac-card {
   background-color: #fff;

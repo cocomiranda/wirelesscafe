@@ -4,9 +4,10 @@ html {
 }
 
 
-.ios h1,h3,h5 {
+.ios h1,h3,h4 {
     zoom: 3;
 }
+
 .ios select,label,input,button {
     zoom: 2;
 }

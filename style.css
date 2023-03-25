@@ -4,10 +4,12 @@ html {
 }
 
 
-.ios h1,h3,h4 {
+.ios h1 {
     zoom: 3;
 }
-
+.ios h3,h4 {
+    zoom: 4;
+}
 .ios select,label,input,button {
     zoom: 2;
 }
@@ -26,7 +28,7 @@ html {
     filter: invert(100%);
 }
 
-.web h1,h3,h5, button, label {
+.web h1,h3,h4, button, label {
     zoom: 1;
     margin-left: 30%;
 }

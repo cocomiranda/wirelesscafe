@@ -11,7 +11,7 @@
     
     <h1><img id="img" src="logo.png">&nbspWork 'n Coffee</h1>
     <h3>Encontrá el café con el mejor WiFi</h3>
-    <h5 style="color: red;">*v1 solo para CABA</h5>
+    <h4 style="color: red;">*v1 solo para CABA</h4>
     <form id="form">
         <label for="coffee-name" style="display: none;">Cafeteria:<span style="font-size: 11px; font-style: italic; display: none;">(*obligatorio)</span></label>
         <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
@@ -23,7 +23,7 @@
         <label for="street">Cafeteria:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)</span></label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
         
         <body>
-          <div>
+          <div id="mapa">
             <div class="pac-card" id="pac-card">
             </div>
             <div id="map" style="height: 200px;"></div>
@@ -183,7 +183,7 @@
           <option value="Villa Urquiza">Villa Urquiza</option>
       </select>
       &nbsp&nbsp&nbsp&nbsp
-      <button onclick="resetFilterTable()">Show all</button>
+      <button id="all" onclick="resetFilterTable()">Show all</button>
 
       <br><br>
       <table id="cafe-data">

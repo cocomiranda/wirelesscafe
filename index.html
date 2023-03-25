@@ -13,14 +13,14 @@
     <h3>Encontrá el café con el mejor WiFi</h3>
     <h4 style="color: red;">*v1 solo para CABA</h4>
     <form id="form">
-        <label for="coffee-name" style="display: none;">Cafeteria:<span style="font-size: 11px; font-style: italic; display: none;">(*obligatorio)</span></label>
+        <label for="coffee-name" style="display: none;">Cafeteria:</label>
         <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
         
         <label for="street" style="display: none;">Direccion:</label>
         <input type="text" id="street" name="street" style="display: none;">
         <br>
         
-        <label for="street" id="cafeteria">Cafeteria:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)&nbsp&nbsp</span></label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
+        <label for="street" id="label">Cafeteria:&nbsp</label><input id="pac-input" type="text" placeholder="Ingresar nombre y dirección" />
         
         <body>
           <div id="mapa">
@@ -39,7 +39,7 @@
         </body>
 
         <br>
-        <label for="barrio">Barrio:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)&nbsp&nbsp</span></label>
+        <label for="barrio" id="label">Barrio:&nbsp</label>
         <select id="barrio" name="barrio">
             <option value="" disabled selected>-</option>
             <option value="Agronomía">Agronomía</option>
@@ -95,7 +95,7 @@
         <br>
 
         <br>
-        <label for="wifi-rating">Rating WiFi:&nbsp<span style="font-size: 11px; font-style: italic;">(*obligatorio)&nbsp&nbsp</span></label>
+        <label for="wifi-rating" id="label">Rating WiFi:&nbsp</label>
         <select id="wifi-rating" name="wifi-rating" required>
             <option value="" disabled selected>-</option>
             <option value="1">1 - Muy Malo</option>
@@ -130,7 +130,7 @@
 
     <!-- filtros de la tabla -->
     <div id="resultado">
-      <label id="filtro">Barrio:&nbsp&nbsp</label>
+      <label id="filtro" >Barrio:&nbsp&nbsp</label>
       <select id="filtro_barrio" name="filtro_barrio">
           <option value="" disabled selected>-</option>
           <option value="Agronomía">Agronomía</option>
@@ -339,7 +339,7 @@
     var cafesRef = ref(db, "cafes");
 
     if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
-      alert("Completar todos los campos obligatorios.");
+      alert("Completar todos los campos.");
       return false;
     } else {
       get(child(cafesRef, registro)).then((snapshot) => {
@@ -355,7 +355,7 @@
             Neigbourhood: barrio.value
           })
           .then(() => {
-            alert("Datos actualizados correctamente.");
+            alert("Datos agregados correctamente.");
           })
           .catch((error) => {
             alert(error);

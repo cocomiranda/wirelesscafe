@@ -27,6 +27,9 @@ html {
     font-size: 15px;
     margin-left: 5%;
 }
+.ios #cafeteria {
+    font-size: 25px;
+}
 .ios #all{
     zoom: 2.5;
     margin-left: 5%;

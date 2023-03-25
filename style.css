@@ -10,12 +10,12 @@ html {
 .ios h3 {
     margin-left: 5%;
     zoom: 3;
-    font-size: 28px;
+    font-size: 22px;
 }
 .ios h4 {
     margin-left: 40%;
     zoom: 3;
-    font-size: 28px;
+    font-size: 20px;
 }
 .ios select,label,input,button {
     zoom: 2;

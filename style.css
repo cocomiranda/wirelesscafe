@@ -11,7 +11,7 @@ html {
 .ios h3 {
     margin-left: 5%;
     margin-top: -5%;
-    zoom: 3;
+    zoom: 3.5;
     font-size: 15px;
 }
 .ios h4 {
@@ -41,19 +41,7 @@ html {
     zoom: 2;
 
 }
-/* .ios #pac-input {
-    zoom: 2;
-} */
-/* .ios .pac-item {
-    zoom: 2;
-    width: 300px;
-} */
 .ios .pac-container.pac-logo.hdpi {
-    /* width: 300px; */
-    /* max-width: 300px; */
-    /* right: 200px; */
-    /* margin-left: -25px;
-    margin-top: -20px; */
     zoom: 2;
 }
 
@@ -93,16 +81,10 @@ html {
 .android table {
     zoom: 2;
 }
-.android #pac-input {
-    width: 200px;
-}
-.android .pac-item {
+.android .pac-container.pac-logo.hdpi {
     zoom: 2;
-    width: 200px;
 }
-.pac-container.pac-logo.hdpi {
-    width: 400px;
-}
+
 
 
 .dark #img {

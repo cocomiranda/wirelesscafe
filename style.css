@@ -41,15 +41,20 @@ html {
     zoom: 2;
 
 }
-.ios #pac-input {
-    width: 200px;
-}
-.ios .pac-item {
+/* .ios #pac-input {
     zoom: 2;
-    width: 200px;
-}
+} */
+/* .ios .pac-item {
+    zoom: 2;
+    width: 300px;
+} */
 .ios .pac-container.pac-logo.hdpi {
-    width: 400px;
+    /* width: 300px; */
+    /* max-width: 300px; */
+    /* right: 200px; */
+    /* margin-left: -25px;
+    margin-top: -20px; */
+    zoom: 2;
 }
 
 
@@ -95,7 +100,7 @@ html {
     zoom: 2;
     width: 200px;
 }
-.android .pac-container.pac-logo.hdpi {
+.pac-container.pac-logo.hdpi {
     width: 400px;
 }
 

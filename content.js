@@ -119,9 +119,9 @@ function initMap() {
   });
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
+  console.log(input.children)
   const biasInputElement = document.getElementById("use-location-bias");
-  const strictBoundsInputElement =
-    document.getElementById("use-strict-bounds");
+  const strictBoundsInputElement = document.getElementById("use-strict-bounds");
   const options = {
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
@@ -176,6 +176,9 @@ function initMap() {
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
     infowindowContent.children["place-name"].textContent = place.name;
+    
+    var aux = document.querySelector('div.pac-container.pac-logo.hdpi');
+    aux.style.width = "1600px";
 
     // console.log(place.name);
     const index = place.formatted_address.indexOf(', C', 0);

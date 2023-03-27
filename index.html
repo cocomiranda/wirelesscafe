@@ -266,76 +266,7 @@
       registro = (nombre + ", " + calle).replace(".","");
       // console.log(registro);
     }
-    // console.log(nombre)    
-    // console.log(calle)   
-
-
-
-
-    // function InsertData() {
-    //   var nombre = document.querySelector("#coffee-name");
-    //   var calle = document.querySelector("#street");
-    //   var barrio = document.getElementById("barrio");
-    //   var wifi = document.getElementById("wifi-rating");
-
-
-    //   if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
-    //     alert("Completar todos los campos obligatorios.");
-    //     return false;
-    //   }
-    //   else
-    //   {
-    //     set(ref(db, "cafes/"+ registro),{
-    //       Name: nombre.textContent,
-    //       Wifi: wifi.value,
-    //       Street: calle.textContent,
-    //       Neigbourhood: barrio.value
-    //     })
-    //     .then(()=>{
-    //         alert("Datos agregados correctamente.");
-    //     })
-    //     .catch((error)=>{
-    //         alert(error);
-    //     });
-    //   }      
-    // }
-
-
-
-  // function InsertData() {
-  //   var nombre = document.querySelector("#coffee-name");
-  //   var calle = document.querySelector("#street");
-  //   var barrio = document.getElementById("barrio");
-  //   var wifi = document.getElementById("wifi-rating");
-  //   // var registro = "12345"; // Replace with the actual value of registro
-
-  //   var cafesRef = ref(db, "cafes");
-
-  //   if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
-  //     alert("Completar todos los campos obligatorios.");
-  //     return false;
-  //   } else {
-  //     get(child(cafesRef, registro)).then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         alert("El registro ya existe en la base de datos.");
-  //       } else {
-  //         // Insert the data
-  //         set(child(cafesRef, registro), {
-  //           Name: nombre.textContent,
-  //           Wifi: wifi.value,
-  //           Street: calle.textContent,
-  //           Neigbourhood: barrio.value
-  //         })
-  //         .then(() => {
-  //           alert("Datos agregados correctamente.");
-  //         })
-  //         .catch((error) => {
-  //           alert(error);
-  //         });
-  //       }
-  //     });
-  //   }      
-  // }
+    
 
   function InsertData() {
     var nombre = document.querySelector("#coffee-name");
@@ -345,7 +276,6 @@
     // var registro = "12345"; // Replace with the actual value of registro
 
     var cafesRef = ref(db, "cafes");
-
     if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
       alert("Completar todos los campos.");
       return false;
@@ -364,6 +294,16 @@
           })
           .then(() => {
             alert("Datos agregados correctamente.");
+            const TelegramBot = require('node-telegram-bot-api');
+            // Replace YOUR_TOKEN with your bot's token obtained from BotFather
+            const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU';
+            // Create a bot instance
+            const bot = new TelegramBot(token, { polling: false });
+            // Replace CHAT_ID with the chat ID of the user/group/channel you want to send a message to
+            const chatId = '-1001821689872';
+            // Send a message to the specified chat ID
+            bot.sendMessage(chatId, 'New data was added.');
+
           })
           .catch((error) => {
             alert(error);

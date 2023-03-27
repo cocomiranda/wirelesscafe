@@ -177,8 +177,7 @@ function initMap() {
     marker.setVisible(true);
     infowindowContent.children["place-name"].textContent = place.name;
     
-    var aux = document.querySelector('div.pac-container.pac-logo.hdpi');
-    aux.style.width = "1600px";
+    
 
     // console.log(place.name);
     const index = place.formatted_address.indexOf(', C', 0);

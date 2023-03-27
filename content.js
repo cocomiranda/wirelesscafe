@@ -119,7 +119,6 @@ function initMap() {
   });
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
-  console.log(input.children)
   const biasInputElement = document.getElementById("use-location-bias");
   const strictBoundsInputElement = document.getElementById("use-strict-bounds");
   const options = {

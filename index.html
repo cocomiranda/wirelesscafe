@@ -19,7 +19,6 @@
     
     <h1><img id="img" src="logo.png">&nbspWork 'n Coffee</h1>
     <h3>Encontrá el espacio con el mejor WiFi</h3>
-    <h4 style="color: red;">*v1 solo para CABA</h4>
     <form id="form">
         <label for="coffee-name" style="display: none;">Sitio:</label>
         <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
@@ -45,65 +44,24 @@
             defer
           ></script>
         </body>
-
-        <br>
-        <label for="barrio" id="label">Barrio:&nbsp</label>
-        <select id="barrio" name="barrio">
-            <option value="" disabled selected>-</option>
-            <option value="Agronomía">Agronomía</option>
-            <option value="Almagro">Almagro</option>
-            <option value="Balvanera">Balvanera</option>
-            <option value="Barracas">Barracas</option>
-            <option value="Belgrano">Belgrano</option>
-            <option value="Boedo">Boedo</option>
-            <option value="Caballito">Caballito</option>
-            <option value="Chacarita">Chacarita</option>
-            <option value="Coghlan">Coghlan</option>
-            <option value="Colegiales">Colegiales</option>
-            <option value="Constitución">Constitución</option>
-            <option value="Flores">Flores</option>
-            <option value="Floresta">Floresta</option>
-            <option value="La Boca">La Boca</option>
-            <option value="La Paternal">La Paternal</option>
-            <option value="Liniers">Liniers</option>
-            <option value="Mataderos">Mataderos</option>
-            <option value="Monte Castro">Monte Castro</option>
-            <option value="Monserrat">Monserrat</option>
-            <option value="Nueva Pompeya">Nueva Pompeya</option>
-            <option value="Núñez">Núñez</option>
-            <option value="Palermo">Palermo</option>
-            <option value="Parque Avellaneda">Parque Avellaneda</option>
-            <option value="Parque Chacabuco">Parque Chacabuco</option>
-            <option value="Parque Chas">Parque Chas</option>
-            <option value="Parque Patricios">Parque Patricios</option>
-            <option value="Puerto Madero">Puerto Madero</option>
-            <option value="Recoleta">Recoleta</option>
-            <option value="Retiro">Retiro</option>
-            <option value="Saavedra">Saavedra</option>
-            <option value="San Cristóbal">San Cristóbal</option>
-            <option value="San Nicolás">San Nicolás</option>
-            <option value="San Telmo">San Telmo</option>
-            <option value="Vélez Sársfield">Vélez Sársfield</option>
-            <option value="Versalles">Versalles</option>
-            <option value="Villa Crespo">Villa Crespo</option>
-            <option value="Villa del Parque">Villa del Parque</option>
-            <option value="Villa Devoto">Villa Devoto</option>
-            <option value="Villa Gral. Mitre">Villa Gral. Mitre</option>
-            <option value="Villa Lugano">Villa Lugano</option>
-            <option value="Villa Luro">Villa Luro</option>
-            <option value="Villa Ortúzar">Villa Ortúzar</option>
-            <option value="Villa Pueyrredón">Villa Pueyrredón</option>
-            <option value="Villa Real">Villa Real</option>
-            <option value="Villa Riachuelo">Villa Riachuelo</option>
-            <option value="Villa Santa Rita">Villa Santa Rita</option>
-            <option value="Villa Soldati">Villa Soldati</option>
-            <option value="Villa Urquiza">Villa Urquiza</option>
-        </select>
         
+       
+        <br>
+
+
+        <label for="provinces">Provincia:&nbsp</label>
+        <select id="provinces" name="provinces" onchange="showCities()">
+          <option value="" disabled selected>-</option></select>
+        <br><br>
+        <label for="cities">Barrio / Localidad:&nbsp</label>
+        <select id="cities" name="cities"></select>
+
+
+
         <br>
 
         <br>
-        <label for="wifi-rating" id="label">Rating WiFi:&nbsp</label>
+        <label for="wifi-rating" id="wifi-rating">Rating WiFi:&nbsp</label>
         <select id="wifi-rating" name="wifi-rating" required>
             <option value="" disabled selected>-</option>
             <option value="1">1 - Muy Malo</option>
@@ -115,92 +73,43 @@
         
         <br>
 
-        <div style="display: none;">
-          <label for="speed-down">Velocidad bajada (Mbps)</label>
-          <input type="number" min="0" id="speed-down" name="speed-down">
-          <br>
-          <label for="speed-up">Velocidad subida (Mbps)</label>
-          <input type="number" min="0" id="speed-up" name="speed-up">
-        </div>
         <br>
 
         
-        <button type="button" id="insert" style="margin-left: 40%;">Enter</button>
-        <!-- onsubmit="return validateForm()" -->
+        <button type="button" id="insert" style="margin-left: 50%;">Enter</button>
     </form>
     <br><br>
 
     
-
+    
+    
 
     <div id="formContents"></div>
     <br><br>
-
     <!-- filtros de la tabla -->
     <div id="resultado" style="margin-top: 200px;">
-      <label id="filtro" >Barrio:&nbsp&nbsp</label>
-      <select id="filtro_barrio" name="filtro_barrio">
-          <option value="" disabled selected>-</option>
-          <option value="Agronomía">Agronomía</option>
-          <option value="Almagro">Almagro</option>
-          <option value="Balvanera">Balvanera</option>
-          <option value="Barracas">Barracas</option>
-          <option value="Belgrano">Belgrano</option>
-          <option value="Boedo">Boedo</option>
-          <option value="Caballito">Caballito</option>
-          <option value="Chacarita">Chacarita</option>
-          <option value="Coghlan">Coghlan</option>
-          <option value="Colegiales">Colegiales</option>
-          <option value="Constitución">Constitución</option>
-          <option value="Flores">Flores</option>
-          <option value="Floresta">Floresta</option>
-          <option value="La Boca">La Boca</option>
-          <option value="La Paternal">La Paternal</option>
-          <option value="Liniers">Liniers</option>
-          <option value="Mataderos">Mataderos</option>
-          <option value="Monte Castro">Monte Castro</option>
-          <option value="Monserrat">Monserrat</option>
-          <option value="Nueva Pompeya">Nueva Pompeya</option>
-          <option value="Núñez">Núñez</option>
-          <option value="Palermo">Palermo</option>
-          <option value="Parque Avellaneda">Parque Avellaneda</option>
-          <option value="Parque Chacabuco">Parque Chacabuco</option>
-          <option value="Parque Chas">Parque Chas</option>
-          <option value="Parque Patricios">Parque Patricios</option>
-          <option value="Puerto Madero">Puerto Madero</option>
-          <option value="Recoleta">Recoleta</option>
-          <option value="Retiro">Retiro</option>
-          <option value="Saavedra">Saavedra</option>
-          <option value="San Cristóbal">San Cristóbal</option>
-          <option value="San Nicolás">San Nicolás</option>
-          <option value="San Telmo">San Telmo</option>
-          <option value="Vélez Sársfield">Vélez Sársfield</option>
-          <option value="Versalles">Versalles</option>
-          <option value="Villa Crespo">Villa Crespo</option>
-          <option value="Villa del Parque">Villa del Parque</option>
-          <option value="Villa Devoto">Villa Devoto</option>
-          <option value="Villa Gral. Mitre">Villa Gral. Mitre</option>
-          <option value="Villa Lugano">Villa Lugano</option>
-          <option value="Villa Luro">Villa Luro</option>
-          <option value="Villa Ortúzar">Villa Ortúzar</option>
-          <option value="Villa Pueyrredón">Villa Pueyrredón</option>
-          <option value="Villa Real">Villa Real</option>
-          <option value="Villa Riachuelo">Villa Riachuelo</option>
-          <option value="Villa Santa Rita">Villa Santa Rita</option>
-          <option value="Villa Soldati">Villa Soldati</option>
-          <option value="Villa Urquiza">Villa Urquiza</option>
-      </select>
-      &nbsp&nbsp&nbsp&nbsp
-      <button id="all" onclick="resetFilterTable()">Show all</button>
+      <h3 id="label_filtro">--------- Filtrá por ubicacion ---------</h3>
 
-      <br><br>
+      <label for="filtro_provinces">Provincia:&nbsp</label>
+        <select id="filtro_provinces" name="filtro_provinces" onchange="filtros()">
+          <option value="" disabled selected>-</option></select>
+        <br><br>
+        <label for="filtro_cities">Barrio / Localidad:&nbsp</label>
+        <select id="filtro_cities" name="filtro_cities"></select>
+      
+
+        <br><br><br>
+      <button type="button" style="margin-left: 50%;" id="all" onclick="resetFilterTable()">Show all</button>
+
+      <br><br><br>
       <table id="cafe-data">
         <thead>
           <tr id="titulo">
             <th>Cafetería</th>
             <th>Wifi Rating</th>
             <th>Direccion</th>
-            <th>Barrio</th>
+            <th>Barrio / Localidad</th>
+            <th>Provincia</th>
           </tr>
         </thead>
         <tbody id="tbody_cafes">
@@ -218,6 +127,7 @@
 
   <script src="content.js" type="application/javascript"></script>
   <script type="module">
+    
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -247,12 +157,6 @@
     var insertBtn = document.querySelector("#insert");
     insertBtn.addEventListener('click', InsertData);
 
-    // var nombre = document.querySelector("#coffee-name");
-    // var wifi = document.querySelector("#wifi-rating");
-    // // var bajada = document.querySelector("#speed-down");
-    // // var subida = document.querySelector("#speed-up");
-    // var calle = document.querySelector("#street");
-    // var barrio = document.querySelector("#barrio");
 
     var nombre;
     var calle;
@@ -264,19 +168,25 @@
       document.getElementById("coffee-name").textContent = nombre;
       document.getElementById("street").textContent = calle;
       registro = (nombre + ", " + calle).replace(".","");
-      // console.log(registro);
     }
     
 
   function InsertData() {
     var nombre = document.querySelector("#coffee-name");
     var calle = document.querySelector("#street");
-    var barrio = document.getElementById("barrio");
+    var barrio = document.getElementById("cities");
     var wifi = document.getElementById("wifi-rating");
+    var provincia = document.getElementById("provinces");
+    // console.log(nombre.textContent)
+    // console.log(calle.textContent)
+    // console.log(barrio.value)
+    // console.log(wifi.value)
+    // console.log(provincia.value)
     // var registro = "12345"; // Replace with the actual value of registro
 
+
     var cafesRef = ref(db, "cafes");
-    if (nombre.textContent == "" || wifi.value == "" || barrio.value == "") {
+    if (nombre.textContent == "" || wifi.value == "" || barrio.value == "" || provincia.value == "") {
       alert("Completar todos los campos.");
       return false;
     } else {
@@ -290,7 +200,8 @@
             Name: nombre.textContent,
             Wifi: newWifi,
             Street: calle.textContent,
-            Neigbourhood: barrio.value
+            Neigbourhood: barrio.value,
+            Province: provincia.value
           })
           .then(() => {
             alert("Datos agregados correctamente.");
@@ -300,16 +211,16 @@
             const message = '[Firebase] - new record'; // Replace with the message you want to send
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
-              // .then(response => {
-              //   if (response.ok) {
-              //     console.log('Message sent successfully!');
-              //   } else {
-              //     console.error('Failed to send message.');
-              //   }
-              // })
-              // .catch(error => {
-              //   console.error('Error sending message:', error);
-              // });
+              .then(response => {
+                if (response.ok) {
+                  console.log('Message sent successfully!');
+                } else {
+                  console.error('Failed to send message.');
+                }
+              })
+              .catch(error => {
+                console.error('Error sending message:', error);
+              });
 
           })
           .catch((error) => {
@@ -321,7 +232,8 @@
             Name: nombre.textContent,
             Wifi: wifi.value,
             Street: calle.textContent,
-            Neigbourhood: barrio.value
+            Neigbourhood: barrio.value,
+            Province: provincia.value
           })
           .then(() => {
             alert("Datos agregados correctamente.");
@@ -329,6 +241,17 @@
           .catch((error) => {
             alert(error);
           });
+          fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+              .then(response => {
+                if (response.ok) {
+                  console.log('Message sent successfully!');
+                } else {
+                  console.error('Failed to send message.');
+                }
+              })
+              .catch(error => {
+                console.error('Error sending message:', error);
+              });
         }
       });
     }      
@@ -337,7 +260,6 @@
 
 
     window.myFunction = values;
-
 
 
     const tableBody = document.querySelector("#cafe-data tbody");
@@ -364,6 +286,7 @@
         <td class="stars">${wifiCell.textContent}</td>
         <td>${data.Street}</td>
         <td>${data.Neigbourhood}</td>
+        <td>${data.Province}</td>
       `;
       tableBody.appendChild(tr);
     });
@@ -373,9 +296,7 @@
     
 
 
-
-      
-
+  
   </script>
 
 

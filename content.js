@@ -1,3 +1,5 @@
+
+
 window.initMap = initMap;
 
 /**
@@ -75,10 +77,10 @@ function initMap() {
     
     
 
-    // console.log(place.name);
-    const index = place.formatted_address.indexOf(', C', 0);
-    // console.log(place.formatted_address.substring(0, index));
-    window.myFunction(place.name,place.formatted_address.substring(0, index));
+    const formated_name = (place.name).replace(".","")
+    const index = place.formatted_address.indexOf(', ', 0);
+    const formated_street = (place.formatted_address.substring(0, index)).replace(".","")
+    window.myFunction(formated_name,formated_street);
 
     infowindowContent.children["place-address"].textContent =
       place.formatted_address;
@@ -124,39 +126,6 @@ let system = document.getElementById('html')
 system.classList.add(sistema);
 
 
-
-
-
-
-
-
-
-// document.getElementById("filtro_provinces").addEventListener("change", filterTable);
-// document.getElementById("filtro_cities").addEventListener("change", filterTable);
-
-// function filterTable() {
-//   var inputBarrio = document.getElementById("filtro_provinces");
-//   var filterBarrio = inputBarrio.value.toUpperCase();
-  
-
-//   var table = document.getElementById("cafe-data");
-//   var rows = table.getElementsByTagName("tr");
-
-//   for (var i = 1; i < rows.length; i++) {
-//     var barrio = rows[i].getElementsByTagName("td")[3].textContent;
-//     var barrioMatch = barrio.toUpperCase().indexOf(filterBarrio) > -1;
-//     if (barrioMatch) {
-//       rows[i].style.display = "";
-//     } else {
-//       rows[i].style.display = "none";
-//     }
-//   }
-// }
-// function resetFilterTable() {
-//   var inputBarrio = document.getElementById("filtro_provinces");
-//   inputBarrio.value = "";
-//   filterTable();
-// }
 
 document.getElementById("filtro_provinces").addEventListener("change", filterTable);
 document.getElementById("filtro_cities").addEventListener("change", filterTable);
@@ -324,3 +293,4 @@ function filtros() {
     }
   }
 }
+

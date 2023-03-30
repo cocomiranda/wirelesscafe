@@ -76,7 +76,7 @@
         <br>
 
         
-        <button type="button" id="insert" style="margin-left: 50%;">Enter</button>
+        <button type="button" id="insert" style="margin-left: 50%;">Submit</button>
     </form>
     <br><br>
 
@@ -99,11 +99,12 @@
       
 
         <br><br><br>
-      <button type="button" style="margin-left: 50%;" id="all" onclick="resetFilterTable()">Show all</button>
+      <button type="button" style="margin-left: 50%; display: none;" id="all" onclick="filterTable()">Filtrar</button>
+      <button type="button" style="margin-left: 50%;" id="todos" onclick="showAllRows()">Ver Todo</button>
 
       <br><br><br>
       <table id="cafe-data">
-        <thead>
+        <thead style="display: none;">
           <tr id="titulo">
             <th>Cafetería</th>
             <th>Wifi Rating</th>
@@ -112,7 +113,7 @@
             <th>Provincia</th>
           </tr>
         </thead>
-        <tbody id="tbody_cafes">
+        <tbody id="tbody_cafes" style="display: none;">
         </tbody>
       </table>
     </div>
@@ -271,6 +272,7 @@
 
 
     const tableBody = document.querySelector("#cafe-data tbody");
+    const tableHead = document.querySelector("#cafe-data thead");
     onValue(ref(db, "cafes"), (snapshot) => {
     tableBody.innerHTML = "";
     const sortedData = [];

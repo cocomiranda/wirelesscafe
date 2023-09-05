@@ -20,18 +20,24 @@
     
     <h1><img id="img" src="logo.png">&nbspWork 'n Coffee</h1>
     <h3>Encontrá el espacio con el mejor WiFi para trabajar</h3>
+    <!-- <br> -->
+    <!-- <h4 style="width: 35%; font-size: 15px;">¿Cansado de buscar el lugar perfecto para trabajar mientras disfrutas de una deliciosa taza de café?
+      Work'n Coffee está acá para simplificar tu elección. 
+      <br><br>
+      Ya sea que necesites un lugar tranquilo para concentrarte o un ambiente inspirador para estimular tu creatividad, estamos aquí para ayudarte a encontrarlo.
+    </h4> -->
 
 
 
     <div>
-      <button type="button" id="nuevo" style="margin-left: 30%;">Añadir Nuevo</button>
+      <button type="button" id="nuevo" style="margin-left: 30%;">Añadir nueva cafeteria</button>
       <!-- <span>&nbsp&nbsp&nbsp</span> -->
-      <button type="button" id="listado" style="margin-left: 2%;">Ver Listado</button>
+      <button type="button" id="listado" style="margin-left: 2%;">Ver cafeterias existentes</button>
     </div>
     <br>
 
 
-    <div id="nuevoContents" style="display: none;">
+    <div id="nuevoContents" style="display: block;">
       <form id="form">
           <label for="coffee-name" style="display: none;">Sitio:</label>
           <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
@@ -74,8 +80,8 @@
           <br>
 
           <br>
-          <label for="wifi-rating" >Rating WiFi:&nbsp</label>
-          <select id="wifi-rating" name="wifi-rating" required >
+          <label for="wifi-rating" >Rating WiFi:&nbsp</label><h7 id="box-wifi" style="font-size: 12px; position: absolute; top: 10;">?</h7>&nbsp
+          <select class="dropdown" id="wifi-rating" name="wifi-rating" required >
               <option value="" disabled selected>-</option>
               <option value="1">1 - Muy Malo</option>
               <option value="2">2 - Malo</option>
@@ -87,10 +93,47 @@
           <br>
 
           <br>
+          <label for="noise-level" >Nivel de Ruido Ambiente:&nbsp</label><h7 id="box-noise" style="font-size: 12px; position: absolute; top: 10;" >?</h7>&nbsp
+          <select class="dropdown" id="noise-level" name="noise-level" required >
+              <option value="" disabled selected>-</option>
+              <option value="silencioso">Silencioso</option>
+              <option value="moderado">Tranquilo</option>
+              <option value="animado">Moderado</option>
+              <option value="ruidoso">Ruidoso</option>
+          </select>
+          <br><br>
 
-          
           <button type="button" id="insert" style="margin-left: 50%;">Submit</button>
       </form>
+
+      <div id="myModal" class="modal">
+          <div class="modal-content">
+              <span class="close"></span>
+              <p>Descripción de los niveles de ruido:</p>
+              <ul>
+                  <li><strong>Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
+                  <li><strong>Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
+                  <li><strong>Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
+                  <li><strong>Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
+              </ul>
+          </div>
+      </div>
+      <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close"></span>
+            <p>Descripción del nivel de wifi:</p>
+            <ul>
+                <li><strong>1 - Muy Malo:</strong> Lenta y poco confiable, lo que dificulta cualquier trabajo en línea significativo y puede resultar en tiempos de espera prolongados y desconexiones frecuentes.</li>
+                <li><strong>2 - Malo:</strong> Básica, adecuada solo para tareas ligeras en línea, como navegación web y correo electrónico.</li>
+                <li><strong>3 - Normal:</strong> Funcional, pero puede experimentar breves interrupciones o velocidades reducidas en momentos de alta demanda.</li>
+                <li><strong>4 - Bueno:</strong> Confiable, adecuada para la mayoría de las tareas en línea, con descargas rápidas y transmisiones sin problemas.</li>
+                <li><strong>5 - Excelente:</strong> Rápida y estable, proporcionando una experiencia de trabajo en línea sin problemas y de alta velocidad.</li>
+              </ul>
+        </div>
+    </div>
+
+
+
       <br><br>
 
       

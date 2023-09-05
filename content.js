@@ -326,3 +326,50 @@ function filtros() {
   }
 }
 
+
+
+
+var noise_description = document.getElementById("box-noise");
+noise_description.addEventListener("click", noise_desc);
+function noise_desc() 
+{
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
+const elementToChange = document.getElementById("box-noise");
+// Add an event listener to change the cursor on hover
+elementToChange.addEventListener("mouseover", () => {
+  elementToChange.classList.add("hand-pointer");
+});
+// Remove the "hand-pointer" class when the mouse leaves the element
+elementToChange.addEventListener("mouseout", () => {
+  elementToChange.classList.remove("hand-pointer");
+});
+
+
+var wifi_description = document.getElementById("box-wifi");
+wifi_description.addEventListener("click", wifi_desc);
+function wifi_desc() 
+{
+    var modal = document.getElementById("myModal2");
+    modal.style.display = "block";
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
+const elementToChange2 = document.getElementById("box-wifi");
+// Add an event listener to change the cursor on hover
+elementToChange2.addEventListener("mouseover", () => {
+  elementToChange2.classList.add("hand-pointer");
+});
+// Remove the "hand-pointer" class when the mouse leaves the element
+elementToChange2.addEventListener("mouseout", () => {
+  elementToChange2.classList.remove("hand-pointer");
+});

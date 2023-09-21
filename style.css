@@ -24,9 +24,17 @@ html {
 }
 .mobile h4 {
     margin-left: 10%;
-    width: 80%;
+    /* width: 80%; */
     zoom: 2;
 }
+.web h4 {
+    margin-left: 10%;
+}
+
+.web h3 {
+    margin-left: 25%;
+}
+
 .mobile input {
     zoom: 2;
 }
@@ -71,9 +79,13 @@ button {
     filter: invert(100%);
 }
 
-.web h1,h3, button, label {
+.web h1, button, label {
     zoom: 1;
     margin-left: 30%;
+}
+.web button {
+    zoom: 1;
+    margin-left: 40%;
 }
 .web #pac-input {
     zoom: 1;
@@ -83,6 +95,13 @@ button {
     zoom: 1;
     margin-left: 3%;
 }
+.web #botones {
+    zoom: 1;
+    margin-left: 20%;
+    margin-top: -2%;
+    margin-bottom: 2%;
+}
+
 
 #img {
     margin-left: 30px;
@@ -97,11 +116,7 @@ button {
     margin-left: 35%;
     max-width: fit-content;
 }
-/* h4 {
-    max-width: fit-content;
-    margin-left: 60%;
-    margin-top: -10px
-} */
+
 select {
     height: 20px;
 }

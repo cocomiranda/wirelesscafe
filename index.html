@@ -20,14 +20,14 @@
     
     <h1><img id="img" src="logo.png">&nbspWork 'n Coffee</h1>
     <h3>Encontrá el espacio con el mejor WiFi para trabajar</h3>
-    <!-- <br> -->
-    <!-- <h4 style="width: 35%; font-size: 15px;">¿Cansado de buscar el lugar perfecto para trabajar mientras disfrutas de una deliciosa taza de café?
+    <br> 
+  <h4 style="width: 35%; font-size: 15px;">¿Cansado de buscar el lugar perfecto para trabajar mientras disfrutas de una deliciosa taza de café?
       Work'n Coffee está acá para simplificar tu elección. 
       <br><br>
       Ya sea que necesites un lugar tranquilo para concentrarte o un ambiente inspirador para estimular tu creatividad, estamos aquí para ayudarte a encontrarlo.
-    </h4> -->
+    </h4>
 
-
+    <br><br>
 
     <div>
       <button type="button" id="nuevo" style="margin-left: 30%;">Añadir nueva cafeteria</button>
@@ -37,7 +37,7 @@
     <br>
 
 
-    <div id="nuevoContents" style="display: block;">
+    <div id="nuevoContents" style="display: none;">
       <form id="form">
           <label for="coffee-name" style="display: none;">Sitio:</label>
           <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
@@ -80,7 +80,7 @@
           <br>
 
           <br>
-          <label for="wifi-rating" >Rating WiFi:&nbsp</label><h7 id="box-wifi" style="font-size: 12px; position: absolute; top: 10;">?</h7>&nbsp
+          <label for="wifi-rating" >Rating WiFi:&nbsp</label><h7 id="box-wifi" style="font-size: 12px; position: absolute; top: 20;">?</h7>&nbsp
           <select class="dropdown" id="wifi-rating" name="wifi-rating" required >
               <option value="" disabled selected>-</option>
               <option value="1">1 - Muy Malo</option>
@@ -96,14 +96,14 @@
           <label for="noise-level" >Nivel de Ruido Ambiente:&nbsp</label><h7 id="box-noise" style="font-size: 12px; position: absolute; top: 10;" >?</h7>&nbsp
           <select class="dropdown" id="noise-level" name="noise-level" required >
               <option value="" disabled selected>-</option>
-              <option value="silencioso">Silencioso</option>
-              <option value="moderado">Tranquilo</option>
-              <option value="animado">Moderado</option>
-              <option value="ruidoso">Ruidoso</option>
+              <option value="1">Silencioso</option>
+              <option value="2">Tranquilo</option>
+              <option value="3">Moderado</option>
+              <option value="4">Ruidoso</option>
           </select>
           <br><br>
 
-          <button type="button" id="insert" style="margin-left: 50%;">Submit</button>
+          <button type="button" id="insert" style="margin-left: 50%; margin-bottom: 20%;">Submit</button>
       </form>
 
       <div id="myModal" class="modal">
@@ -134,7 +134,7 @@
 
 
 
-      <br><br>
+      
 
       
     </div>
@@ -143,7 +143,7 @@
     <div id="formContents" style="display: none;">
       
       <!-- filtros de la tabla -->
-      <div id="resultado" style="margin-top: 200px;">
+      <div id="resultado" style="margin-top: 50px;">
         <h3 id="label_filtro">--------- Filtrá por ubicacion ---------</h3>
 
         <label for="filtro_provinces">Provincia:&nbsp</label>
@@ -164,6 +164,7 @@
             <tr id="titulo">
               <th>Cafetería</th>
               <th>Wifi Rating</th>
+              <th>Nivel Ruido</th>
               <th>Direccion</th>
               <th>Barrio / Localidad</th>
               <th>Provincia</th>
@@ -262,6 +263,8 @@
     var calle = document.querySelector("#street");
     var barrio = document.getElementById("cities");
     var wifi = document.getElementById("wifi-rating");
+    var ruido = document.getElementById("noise-level");
+    console.log(ruido)
     var provincia = document.getElementById("provinces");
     // console.log(nombre.textContent)
     // console.log(calle.textContent)
@@ -272,7 +275,7 @@
 
 
     var cafesRef = ref(db, "cafes");
-    if (nombre.textContent == "" || wifi.value == "" || barrio.value == "" || provincia.value == "") {
+    if (nombre.textContent == "" || wifi.value == "" || ruido.value == "" || barrio.value == "" || provincia.value == "") {
       alert("Completar todos los campos.");
       return false;
     } else {
@@ -282,9 +285,13 @@
           var existingData = snapshot.val();
           var existingWifi = parseFloat(existingData.Wifi);
           var newWifi = (existingWifi + parseFloat(wifi.value)) / 2;
+          var existingRuido = parseFloat(existingData.Ruido);
+          var newRuido = (existingRuido + parseFloat(ruido.value)) / 2;
+
           update(child(cafesRef, registro), {
             Name: nombre.textContent,
             Wifi: newWifi,
+            Ruido: newRuido,
             Street: calle.textContent,
             Neigbourhood: barrio.value,
             Province: provincia.value
@@ -293,7 +300,8 @@
             alert("Datos agregados correctamente.");
             const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
             const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-            const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (newWifi) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
+            console.log(newRuido)
+            const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (newWifi) + ' - ' + (newRuido) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
               .then(response => {
@@ -317,6 +325,7 @@
           set(child(cafesRef, registro), {
             Name: nombre.textContent,
             Wifi: wifi.value,
+            Ruido: ruido.value,
             Street: calle.textContent,
             Neigbourhood: barrio.value,
             Province: provincia.value
@@ -372,9 +381,16 @@
       const starString = stars.join('');
       wifiCell.textContent = starString;
 
+      const ruidoCell = document.createElement("td");
+      const stars2 = Array.from({ length: data.Ruido }, () => '\u2606');
+      stars2.fill('\u2605', 0, data.Ruido);
+      const starString2 = stars2.join('');
+      ruidoCell.textContent = starString2;
+
       tr.innerHTML += `
         <td>${data.Name}</td>
         <td class="stars">${wifiCell.textContent}</td>
+        <td class="stars">${ruidoCell.textContent}</td>
         <td>${data.Street}</td>
         <td>${data.Neigbourhood}</td>
         <td>${data.Province}</td>

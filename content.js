@@ -139,29 +139,44 @@ function filterTable() {
   var filterCity = inputCity.value.toUpperCase();
 
   var table = document.getElementById("cafe-data");
-  var rows = table.getElementsByTagName("tr");
 
-  // show all rows
-  
+  const rows = document.querySelectorAll("#cafe-data tbody tr");
+  let anyRowDisplayed = false; // Flag to check if any row is displayed
 
-  for (var i = 1; i < rows.length; i++) {
-    rows[i].style.display = "";
+  for (var i = 0; i < rows.length; i++) {
+      var province = rows[i].getElementsByTagName("td")[5].textContent.toUpperCase();
+      var city = rows[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+      var provinceMatch = province === filterProvince;
+
+      // Check if filterCity is not selected or if the city matches
+      var cityMatch = !filterCity || city === filterCity;
+
+      if (!(provinceMatch && cityMatch)) {
+          rows[i].style.display = "none";
+      } else {
+          rows[i].style.display = ""; // Show the row
+          anyRowDisplayed = true; // Set the flag to true
+      }
   }
 
-  // filter rows based on input values
-  for (var i = 1; i < rows.length; i++) {
-    var province = rows[i].getElementsByTagName("td")[4].textContent.toUpperCase();
-    var city = rows[i].getElementsByTagName("td")[3].textContent.toUpperCase();
-    var provinceMatch = province === filterProvince;
-    var cityMatch = city === filterCity;
-    if (!(provinceMatch && cityMatch)) {
-      rows[i].style.display = "none";
-    }
-  }
   const tableHead = document.querySelector("#cafe-data thead");
   const tableBody = document.querySelector("#cafe-data tbody");
-  tableHead.style.display = "";
-  tableBody.style.display = "";
+
+  // Check if any row is displayed
+  if (anyRowDisplayed) {
+      tableHead.style.display = ""; // Show the table header
+      tableBody.style.display = ""; // Show the table body
+  } else {
+      tableHead.style.display = "none"; // Hide the table header
+      tableBody.style.display = "none"; // Hide the table body
+      alert("No se encontraron cafeterias en este lugar.");
+  }
+
+  
+  
+  
+  
+
 }
 
 

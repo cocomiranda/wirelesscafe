@@ -264,7 +264,6 @@
     var barrio = document.getElementById("cities");
     var wifi = document.getElementById("wifi-rating");
     var ruido = document.getElementById("noise-level");
-    console.log(ruido)
     var provincia = document.getElementById("provinces");
     // console.log(nombre.textContent)
     // console.log(calle.textContent)
@@ -300,7 +299,7 @@
             alert("Datos agregados correctamente.");
             const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
             const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-            console.log(newRuido)
+            // console.log(newRuido)
             const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (newWifi) + ' - ' + (newRuido) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)

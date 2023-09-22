@@ -327,9 +327,9 @@ body {
 /* Modal Content */
 .modal-content2{
     background-color: #fefefe;
-    font-size: 12px;
+    font-size: 14px;
     /* margin: auto; */
-    margin-left: 25%;
+    margin-left: 20%;
     margin-top: 20px;
     padding: 5px;
     border: 2px solid red;

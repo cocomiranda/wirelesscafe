@@ -388,3 +388,18 @@ elementToChange2.addEventListener("mouseover", () => {
 elementToChange2.addEventListener("mouseout", () => {
   elementToChange2.classList.remove("hand-pointer");
 });
+
+
+
+var info_description = document.getElementById("info_button");
+info_description.addEventListener("click", info_desc);
+function info_desc() 
+{
+    var modal = document.getElementById("info_modal");
+    modal.style.display = "block";
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}

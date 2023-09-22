@@ -111,11 +111,11 @@
               <span class="close"></span>
               <p>Descripción de los niveles de ruido:</p>
               <ul>
-                  <li><strong>Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
-                  <li><strong>Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
-                  <li><strong>Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
-                  <li><strong>Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
-              </ul>
+                <li><strong>1 - Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
+                <li><strong>2 - Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
+                <li><strong>3 - Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
+                <li><strong>4 - Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
+            </ul>
           </div>
       </div>
       <div id="myModal2" class="modal">
@@ -156,7 +156,33 @@
 
           <br><br><br>
         <button type="button" style="margin-left: 50%; display: none;" id="all" onclick="filterTable()">Filtrar</button>
-        <button type="button" style="margin-left: 50%;" id="todos" onclick="showAllRows()">Ver Todo</button>
+        <button type="button" style="margin-left: 50%;" id="todos" onclick="showAllRows()">Ver Todo</button><span id="info_button">&nbsp&nbspⓘ</span>
+        
+        <div id="info_modal" style="display: none;">
+            <div class="modal-content2">
+              <span class="close"></span>
+              <p>Descripción del nivel de wifi:</p>
+              <ul>
+                  <li><strong>1 - Muy Malo:</strong> Lenta y poco confiable, lo que dificulta cualquier trabajo en línea significativo y puede resultar en tiempos de espera prolongados y desconexiones frecuentes.</li>
+                  <li><strong>2 - Malo:</strong> Básica, adecuada solo para tareas ligeras en línea, como navegación web y correo electrónico.</li>
+                  <li><strong>3 - Normal:</strong> Funcional, pero puede experimentar breves interrupciones o velocidades reducidas en momentos de alta demanda.</li>
+                  <li><strong>4 - Bueno:</strong> Confiable, adecuada para la mayoría de las tareas en línea, con descargas rápidas y transmisiones sin problemas.</li>
+                  <li><strong>5 - Excelente:</strong> Rápida y estable, proporcionando una experiencia de trabajo en línea sin problemas y de alta velocidad.</li>
+                </ul>
+            </div>
+            <div class="modal-content2">
+                <span class="close"></span>
+                <p>Descripción de los niveles de ruido:</p>
+                <ul>
+                    <li><strong>1 - Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
+                    <li><strong>2 - Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
+                    <li><strong>3 - Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
+                    <li><strong>4 - Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
+                </ul>
+            </div>
+            
+        </div>
+
 
         <br><br><br>
         <table id="cafe-data">
@@ -215,18 +241,22 @@
 
 
 
-    var nuvoBtn = document.querySelector("#nuevo");
-    nuvoBtn.addEventListener('click', Nuevo);
+    var nuevoBtn = document.querySelector("#nuevo");
+    nuevoBtn.addEventListener('click', Nuevo);
     var listadoBtn = document.querySelector("#listado");
     listadoBtn.addEventListener('click', Listado);
 
     function Nuevo() {
       document.querySelector("#nuevoContents").style.display = "block";
       document.querySelector("#formContents").style.display = "none";
+      nuevoBtn.style.opacity = '0.6';
+      listadoBtn.style.opacity = '1';
     }  
     function Listado() {
       document.querySelector("#nuevoContents").style.display = "none";
       document.querySelector("#formContents").style.display = "block";
+      nuevoBtn.style.opacity = '1';
+      listadoBtn.style.opacity = '0.6';
     }
 
 

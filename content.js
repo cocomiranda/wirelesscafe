@@ -396,6 +396,7 @@ elementToChange.addEventListener("mouseout", () => {
 });
 
 
+
 var wifi_description = document.getElementById("box-wifi");
 wifi_description.addEventListener("click", wifi_desc);
 function wifi_desc() 
@@ -432,12 +433,20 @@ function info_desc()
       }
     }
 }
+const elementToChange3 = document.getElementById("info_button");
+// Add an event listener to change the cursor on hover
+elementToChange3.addEventListener("mouseover", () => {
+  elementToChange3.classList.add("hand-pointer");
+});
+// Remove the "hand-pointer" class when the mouse leaves the element
+elementToChange3.addEventListener("mouseout", () => {
+  elementToChange3.classList.remove("hand-pointer");
+});
 
 
 
 
 function maps_search(placeName) {
-  console.log(placeName)
   // Replace spaces in the placeName with '+' signs
   const query = placeName.replace(/\s+/g, '+');
 

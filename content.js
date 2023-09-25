@@ -137,8 +137,30 @@ function filterTable() {
   var inputCity = document.getElementById("filtro_cities");
   var filterProvince = inputProvince.value.toUpperCase();
   var filterCity = inputCity.value.toUpperCase();
-
+  
   var table = document.getElementById("cafe-data");
+
+
+  if (filterProvince !== "") {
+    // A selection has been made
+    inputCity.disabled = false;
+    for (var i = 0; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      row.cells[4].style.display = "table-cell";
+      row.cells[5].style.display = "none";
+    }
+  }
+  if (filterProvince !== "" && filterCity !== "") {
+    for (var i = 0; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      if (row.cells.length > 4) {
+          row.cells[4].style.display = "none";
+      }
+    }
+  }
+  
+
+  
 
   const rows = document.querySelectorAll("#cafe-data tbody tr");
   let anyRowDisplayed = false; // Flag to check if any row is displayed
@@ -169,7 +191,7 @@ function filterTable() {
   } else {
       tableHead.style.display = "none"; // Hide the table header
       tableBody.style.display = "none"; // Hide the table body
-      alert("No se encontraron cafeterias en este lugar.");
+      alert('No se encontraron cafeterias en este lugar.\nIr a la sección "Añadir nueva cafetería" para agregar un nuevo lugar.');
   }
 
   
@@ -181,28 +203,35 @@ function filterTable() {
 
 
 
-
-function resetFilterTable() {
-    var inputBarrio = document.getElementById("filtro_provinces");
-    inputBarrio.value = "";
-    filterTable();
-}
-
-
-// var showAllButton = document.getElementById("todos");
-// showAllButton.addEventListener("click", showAllRows);
-
 function showAllRows() {
+
+  var inputProvince = document.getElementById("filtro_provinces");
+  var inputCity = document.getElementById("filtro_cities");
+
+  inputProvince.value = "";
+  inputCity.value = "";
+  inputCity.disabled = true;
+  
   var table = document.getElementById("cafe-data");
+
   const tableHead = document.querySelector("#cafe-data thead");
   const tableBody = document.querySelector("#cafe-data tbody");
   tableHead.style.display = "";
   tableBody.style.display = "";
   table.style.display = "";
-  var rows = document.querySelectorAll("#cafe-data tbody tr");
-  for (var i = 0; i < rows.length; i++) {
-    rows[i].style.display = "";
+
+  // Loop through all rows in the table
+  for (var i = 0; i < table.rows.length; i++) {
+    var row = table.rows[i];
+    row.style.display = "table-row"
+    // Loop through all cells (td elements) in the row
+    for (var j = 0; j < row.cells.length; j++) {
+      var cell = row.cells[j];
+      // Set the display style to "table-cell" to show the cell
+      cell.style.display = "table-cell";
+    }
   }
+  
 }
 
 

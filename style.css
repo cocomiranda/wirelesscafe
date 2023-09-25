@@ -25,6 +25,7 @@ html {
 .mobile h4 {
     margin-left: 10%;
     width: 80%;
+    font-size: 30px;
     zoom: 2.2;
 }
 
@@ -39,10 +40,10 @@ html {
 
 .mobile label {
     zoom: 3.5;
-    font-size: 18px;
+    font-size: 20px;
 }
 .mobile #label {
-    font-size: 18px;
+    font-size: 20px;
 }
 .mobile button{
     zoom: 2.5;

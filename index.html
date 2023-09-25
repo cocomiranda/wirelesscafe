@@ -22,24 +22,25 @@
     <h3>Encontrá el espacio con el mejor WiFi para trabajar</h3>
     <br> 
   <h4>¿Cansado de buscar el lugar perfecto para trabajar mientras disfrutas de una deliciosa taza de café?
-      Work'n Coffee está acá para simplificar tu elección. 
+    <br>Work'n Coffee está acá para simplificar tu elección. 
       <br><br>
       Ya sea que necesites un lugar tranquilo para concentrarte o un ambiente inspirador para estimular tu creatividad, estamos aquí para ayudarte a encontrarlo.
     </h4>
 
     <br><br>
-
-    <div id="botones">
-      <button type="button" id="nuevo" style="margin-left: 15%; margin-top: 5%;">Añadir nueva cafeteria</button>
-      <!-- <span>&nbsp&nbsp&nbsp</span> -->
-      <button type="button" id="listado" style="margin-left: 5%;">Ver cafeterias existentes</button>
+    <div id="container">
+      <div id="botones">
+        <button type="button" id="nuevo" style="margin-top: 5%;">Añadir nueva cafeteria</button>
+        <!-- <span>&nbsp&nbsp&nbsp</span> -->
+        <button type="button" id="listado">Ver cafeterias existentes</button>
+      </div>
     </div>
     <br>
 
 
     <div id="nuevoContents" style="display: none;">
       <form id="form">
-          <label for="coffee-name" style="display: none;">Sitio:</label>
+          <label for="coffee-name" style="display: none;" id="sitio">Sitio:</label>
           <input type="text" id="coffee-name" name="coffee-name" required style="display: none;">
           
           <label for="street" style="display: none;">Direccion:</label>
@@ -103,7 +104,7 @@
           </select>
           <br><br>
 
-          <button type="button" id="insert" style="margin-left: 40%; margin-bottom: 20%; margin-top: 5%;">Submit</button>
+          <button type="button" id="insert" style="margin-bottom: 20%; margin-top: 5%;">Submit</button>
       </form>
 
       <div id="myModal" class="modal">
@@ -155,8 +156,8 @@
         
 
           <br><br><br>
-        <button type="button" style="margin-left: 50%; display: none;" id="all" onclick="filterTable()">Filtrar</button>
-        <button type="button" style="margin-left: 50%;" id="todos" onclick="showAllRows()">Ver Todo</button><span id="info_button">&nbsp&nbspⓘ</span>
+        <button type="button" style="display: none;" id="all" onclick="filterTable()">Filtrar</button>
+        <button type="button" id="todos" onclick="showAllRows()">Ver Todo</button><span id="info_button">&nbsp&nbspⓘ</span>
         
         <div id="info_modal" style="display: none;">
             <div class="modal-content2">

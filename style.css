@@ -27,13 +27,13 @@ html {
     width: 80%;
     zoom: 2;
 }
-.web h4 {
+/* .web h4 {
     margin-left: 10%;
-}
+} */
 
-.web h3 {
+/* .web h3 {
     margin-left: 25%;
-}
+} */
 
 .mobile input {
     zoom: 2;
@@ -47,14 +47,9 @@ html {
 }
 
 
-button {
-    padding: 5px;
-    margin-left: 30%;
-}
 .mobile label {
     zoom: 3.5;
     font-size: 15px;
-    margin-left: 5%;
 }
 .mobile #label {
     font-size: 18px;
@@ -67,7 +62,6 @@ button {
 }
 .mobile table {
     zoom: 2;
-
 }
 .mobile .pac-container.pac-logo.hdpi {
     zoom: 2;
@@ -75,32 +69,26 @@ button {
 
 
 
+.mobile h1,h3,h4,button,#form,#insert,#resultado,#botones {
+    text-align: center;
+}
+
 .dark #img {
     filter: invert(100%);
 }
-
-.web h1, button, label {
-    zoom: 1;
-    margin-left: 30%;
+.web h1,h3,h4,button,#form,#insert,#resultado,#botones {
+    text-align: center;
+}
+.web #container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .web button {
-    zoom: 1;
-    margin-left: 40%;
+    margin: 10px; /* Add some margin between the buttons */
 }
-.web #pac-input {
-    zoom: 1;
-    margin-left: 3%;
-}
-.web #all {
-    zoom: 1;
-    margin-left: 3%;
-}
-.web #botones {
-    zoom: 1;
-    margin-left: 20%;
-    margin-top: -2%;
-    margin-bottom: 2%;
-}
+
 
 
 #img {
@@ -109,15 +97,13 @@ button {
     width: 35px;
 }
 
-/* .h1 {
-    padding-left: 120px;
-} */
-#label_filtro, #h1{
+
+/* #label_filtro, #h1{
     margin-left: 35%;
     max-width: fit-content;
-}
+} */
 
-select {
+/* select {
     height: 20px;
 }
 button {
@@ -126,7 +112,7 @@ button {
 form {
     font-size: 18px;
     width: 100%;
-}
+} */
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {
     border-collapse: collapse;
@@ -185,40 +171,27 @@ td:last-child {
     background-color: #14202b;
     color: white;
 }
-
-
 .stars {
     color: gold;
 }
 #resultado {
-    padding-bottom: 80px;
+    padding: 2%;
 }
 
 
 
 
 
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-/* 
-  * Always set the map height explicitly to define the size of the div element
-  * that contains the map. 
-  */
+
 #map {
     height: 100%;
     width: 100%;
 }
 #mapa {
-    margin-top: 10px;
-
+    padding: 1%;
 }
 
-/* 
-  * Optional: Makes the sample page fill the window. 
-  */
+
 html,
 body {
   height: 100%;

@@ -25,40 +25,24 @@ html {
 .mobile h4 {
     margin-left: 10%;
     width: 80%;
-    zoom: 2;
+    zoom: 2.2;
 }
-/* .web h4 {
-    margin-left: 10%;
-} */
-
-/* .web h3 {
-    margin-left: 25%;
-} */
 
 .mobile input {
     zoom: 2;
 }
-
 .mobile select {
     zoom: 2;
     height: 25px;
     padding-top: 1.3%;
-
 }
 
-
-button {
-    padding: 5px;
-}
 .mobile label {
     zoom: 3.5;
-    font-size: 15px;
+    font-size: 18px;
 }
 .mobile #label {
     font-size: 18px;
-}
-.mobile #resultado {
-    margin-right: 10%;
 }
 .mobile button{
     zoom: 2.5;
@@ -105,6 +89,9 @@ button {
 }
 
 
+button {
+    padding: 5px;
+}
 
 #img {
     margin-left: 30px;
@@ -131,7 +118,7 @@ form {
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
     text-align: center;
 }
 

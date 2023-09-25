@@ -1,6 +1,7 @@
 html {
     font-family: "Trebuchet MS";
-    margin-left: 60%;
+    /* margin-left: 60%; */
+    
 }
 
  
@@ -78,8 +79,10 @@ html {
 }
 .web h1,h3,h4,button,#form,#insert,#resultado,#botones {
     text-align: center;
+    
 }
 .web #container {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,25 +104,11 @@ button {
 }
 
 
-/* #label_filtro, #h1{
-    margin-left: 35%;
-    max-width: fit-content;
-} */
 
-/* select {
-    height: 20px;
-}
-button {
-    padding: 5px;
-}
-form {
-    font-size: 18px;
-    width: 100%;
-} */
 /* Set the border-collapse property to collapse to remove spaces between cells */
 table {
     border-collapse: collapse;
-    width: 90%;
+    width: 100%;
     text-align: center;
 }
 
@@ -180,7 +169,9 @@ td:last-child {
 #resultado {
     padding: 2%;
 }
-
+.mobile #resultado {
+    padding: 2%;
+}
 
 
 

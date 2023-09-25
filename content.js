@@ -448,7 +448,3 @@ function maps_search(placeName) {
   window.open(googleMapsURL, '_blank');
 }
 
-// Example usage:
-// const placeName = "Eiffel Tower";
-// const url = generateGoogleMapsSearchURL(placeName);
-// console.log(url);

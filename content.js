@@ -432,3 +432,23 @@ function info_desc()
       }
     }
 }
+
+
+
+
+function maps_search(placeName) {
+  console.log(placeName)
+  // Replace spaces in the placeName with '+' signs
+  const query = placeName.replace(/\s+/g, '+');
+
+  // Construct the Google Maps search URL
+  const googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${query}`;
+  
+  // Open a new window or tab with the Google Maps URL
+  window.open(googleMapsURL, '_blank');
+}
+
+// Example usage:
+// const placeName = "Eiffel Tower";
+// const url = generateGoogleMapsSearchURL(placeName);
+// console.log(url);

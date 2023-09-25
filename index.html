@@ -419,7 +419,7 @@
       ruidoCell.textContent = starString2;
 
       tr.innerHTML += `
-        <td>${data.Name}</td>
+        <td onclick="maps_search(this.textContent)">${data.Name}</td>
         <td class="stars">${wifiCell.textContent}</td>
         <td class="stars">${ruidoCell.textContent}</td>
         <td>${data.Street}</td>

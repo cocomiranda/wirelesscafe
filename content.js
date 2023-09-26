@@ -513,16 +513,56 @@ function maps_search(placeName) {
 }
 
 
-
 function toggleDisplay(element) {
   const row = element.parentElement.parentElement;
   const hs = row.querySelector('#hs');
+  const tdElement = element.closest('td'); // Find the closest <td> element
+
   if (hs.style.display === 'none') {
     hs.style.display = 'block';
+    // Set the width to 50% when showing the hidden content
+    tdElement.style.width = '40%';
   } else {
     hs.style.display = 'none';
+    // Reset the width when hiding the content
+    tdElement.style.width = '';
   }
 }
+
+
+
+
+document.getElementById("mensajeForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+  // Obtener los valores de los campos
+  var nombre = document.getElementById("usuario").value;
+  var texto = document.getElementById("texto").value;
+
+  // Puedes realizar acciones con los valores aquí, como enviarlos a un servidor o mostrarlos en la página
+  // console.log("Nombre: " + nombre + "\nMensaje: " + texto);
+
+  const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
+  const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
+  const message = (nombre) + ' - ' + (texto) ; // Replace with the message you want to send
+  // console.log(message)
+  fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+              .then(response => {
+                if (response.ok) {
+                  console.log('Message sent successfully!');
+                } else {
+                  console.error('Failed to send message.');
+                }
+              })
+              .catch(error => {
+                console.error('Error sending message:', error);
+              });
+
+
+  // Limpia los campos después de enviar el formulario
+  document.getElementById("nombre").value = "";
+  document.getElementById("texto").value = "";
+});
 
 
 

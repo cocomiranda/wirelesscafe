@@ -81,16 +81,11 @@ html {
     text-align: center;
 }
 
-.mobile h6 {
-    font-size: 30px;
-    margin-top: 10px; 
-    margin-bottom: 15px;
-}
-.web h6 {
-    font-size: 18px;
-    margin-top: 10px; 
-    margin-bottom: 15px;
-}
+/* #mensaje {
+    margin-top: 10px;
+} */
+
+
 #mensajeForm {
     position: relative;
     bottom: 0;

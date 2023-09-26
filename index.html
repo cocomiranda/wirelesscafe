@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v1.1 -->
 <html id="html">
   <head>
     <title>Work 'n Coffee</title>
@@ -156,8 +157,8 @@
         
 
           <br><br><br>
-        <button type="button" style="display: none;" id="all" onclick="filterTable()">Filtrar</button>
-        <button type="button" id="todos" onclick="showAllRows()">Ver Todo</button><span id="info_button">&nbsp&nbspⓘ</span>
+        <!-- <button type="button" style="display: none;" id="all" onclick="filterTable()">Filtrar</button> -->
+        <button type="button" id="todos" onclick="showAllRows()">Ver Todo</button>
         
         <div id="info_modal" style="display: none;">
             <div class="modal-content2">
@@ -171,28 +172,29 @@
                   <li><strong>5 - Excelente:</strong> Rápida y estable, proporcionando una experiencia de trabajo en línea sin problemas y de alta velocidad.</li>
                 </ul>
             </div>
-            <div class="modal-content2">
-                <span class="close"></span>
-                <p>Descripción de los niveles de ruido:</p>
-                <ul>
-                    <li><strong>1 - Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
-                    <li><strong>2 - Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
-                    <li><strong>3 - Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
-                    <li><strong>4 - Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
-                </ul>
-            </div>
-            
         </div>
-
+        <div id="info_modal2" style="display: none;">
+          <div class="modal-content2">
+              <span class="close"></span>
+              <p>Descripción de los niveles de ruido:</p>
+              <ul>
+                  <li><strong>1 - Silencioso:</strong> Ideal para trabajos que requieren concentración casi total o total.</li>
+                  <li><strong>2 - Tranquilo:</strong> Adecuado para tareas de trabajo y charlas informales.</li>
+                  <li><strong>3 - Moderado:</strong>  Puede haber cierto ruido de fondo, un lugar funcional para trabajar y socializar.</li>
+                  <li><strong>4 - Ruidoso:</strong> Nivel de ruido es alto y constante, lo que puede dificultar la concentración en tareas laborales.</li>
+              </ul>
+          </div>
+      </div>
 
         <br><br><br>
         <table id="cafe-data">
           <thead style="display: none;">
             <tr id="titulo">
               <th>Cafetería</th>
-              <th>Wifi Rating</th>
-              <th>Nivel Ruido</th>
-              <th>Direccion</th>
+              <th id="info_wifi">Wifi Rating</th>
+              <th id="info_ruido">Nivel Ruido</th>
+              <th>Info</th>
+              <!-- <th>Horarios</th> -->
               <th>Barrio / Localidad</th>
               <th>Provincia</th>
             </tr>
@@ -280,10 +282,12 @@
     var nombre;
     var calle;
     var registro;
+    var horarios;
 
-    function values(cafe,direc) {
+    function values(cafe,direc,horario) {
       nombre = cafe;
       calle = direc;
+      horarios = horario;
       document.getElementById("coffee-name").textContent = nombre;
       document.getElementById("street").textContent = calle;
       registro = (nombre + ", " + calle).replace(".","");
@@ -298,6 +302,7 @@
     var wifi = document.getElementById("wifi-rating");
     var ruido = document.getElementById("noise-level");
     var provincia = document.getElementById("provinces");
+    var hours = horarios;
     // console.log(nombre.textContent)
     // console.log(calle.textContent)
     // console.log(barrio.value)
@@ -307,7 +312,8 @@
 
 
     var cafesRef = ref(db, "cafes");
-    if (nombre.textContent == "" || wifi.value == "" || ruido.value == "" || barrio.value == "" || provincia.value == "") {
+    // if (nombre.textContent == "" || wifi.value == "" || ruido.value == "" || barrio.value == "" || provincia.value == "") {
+    if (nombre.textContent == "" ) {
       alert("Completar todos los campos.");
       return false;
     } else {
@@ -326,7 +332,8 @@
             Ruido: newRuido,
             Street: calle.textContent,
             Neigbourhood: barrio.value,
-            Province: provincia.value
+            Province: provincia.value,
+            Horarios: hours
           })
           .then(() => {
             alert("Datos agregados correctamente.");
@@ -359,7 +366,8 @@
             Ruido: ruido.value,
             Street: calle.textContent,
             Neigbourhood: barrio.value,
-            Province: provincia.value
+            Province: provincia.value,
+            Horarios: hours
           })
           .then(() => {
             alert("Datos agregados correctamente.");
@@ -404,8 +412,15 @@
 
     sortedData.sort((a, b) => b.Wifi - a.Wifi);
 
+
+    function logHorarios(horarios) {
+      console.log(horarios);
+    }
+
+    
     sortedData.forEach((data) => {
       const tr = document.createElement("tr");
+
       const wifiCell = document.createElement("td");
       const stars = Array.from({ length: data.Wifi }, () => '\u2606');
       stars.fill('\u2605', 0, data.Wifi);
@@ -418,16 +433,68 @@
       const starString2 = stars2.join('');
       ruidoCell.textContent = starString2;
 
+
+
+      // <td id="hs">${addLineBreaksToOpeningHours(data.Horarios)}</td>
+      // onclick="logHorarios('${data.Horarios}')"
+      
       tr.innerHTML += `
-        <td onclick="maps_search(this.textContent)">${data.Name}</td>
+        <td>${data.Name}</td>
         <td class="stars">${wifiCell.textContent}</td>
         <td class="stars">${ruidoCell.textContent}</td>
-        <td>${data.Street}</td>
+
+        <td style="min-width: 60px;">
+          <span
+            onclick="maps_search('${data.Name}')"
+            src="map.png"
+            onmouseover="this.classList.add('hand-pointer')"
+            onmouseout="this.classList.remove('hand-pointer')"
+          >
+            <img id="icon_map" src="map.png">
+          </span>
+          <span
+              src="time.png"
+              onmouseover="this.classList.add('hand-pointer')"
+              onmouseout="this.classList.remove('hand-pointer')"
+              onclick="toggleDisplay(this);"
+          >
+              <img id="icon_hours" src="time.png">
+          </span>
+          <span id="hs" style="display: none;">${addLineBreaksToOpeningHours(data.Horarios)}</span>
+
+        </td>
+
+
         <td>${data.Neigbourhood}</td>
         <td>${data.Province}</td>
       `;
+      
       tableBody.appendChild(tr);
+      
     });
+
+    
+    function addLineBreaksToOpeningHours(openingHours) {
+      if (!openingHours) {
+        return "Not available";
+      }
+      // Regular expression to match the days of the week in Spanish
+      const daysOfWeekRegex = /(lunes|martes|miércoles|jueves|viernes|sábado|domingo)/gi;
+      // Replace each occurrence of a day with a <br> tag plus the day name
+      let formattedOpeningHours = openingHours.replace(daysOfWeekRegex, "<br>$1");
+      // Add a <br> tag at the end of the string
+      return formattedOpeningHours;
+    }
+
+
+
+
+
+    
+
+
+
+
   });
 
 
@@ -439,5 +506,25 @@
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

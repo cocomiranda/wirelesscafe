@@ -21,7 +21,7 @@ function initMap() {
   const biasInputElement = document.getElementById("use-location-bias");
   const strictBoundsInputElement = document.getElementById("use-strict-bounds");
   const options = {
-    fields: ["formatted_address", "geometry", "name"],
+    fields: ["formatted_address", "geometry", "name", "opening_hours"],
     strictBounds: false,
     types: ["establishment"],
   };
@@ -53,6 +53,10 @@ function initMap() {
     marker.setVisible(false);
 
     const place = autocomplete.getPlace();
+    
+    
+
+
 
     if (!place.geometry || !place.geometry.location) {
       // User entered the name of a Place that was not suggested and
@@ -80,7 +84,25 @@ function initMap() {
     const formated_name = (place.name).replace(".","")
     const index = place.formatted_address.indexOf(', ', 0);
     const formated_street = (place.formatted_address.substring(0, index)).replace(".","")
-    window.myFunction(formated_name,formated_street);
+
+
+
+    const openingHours = place.opening_hours;
+    let openingHoursText = "";
+    if (openingHours) {
+      openingHoursText += openingHours.weekday_text.join("\n");
+    } else {
+      openingHoursText += "Not available";
+    }
+
+
+    
+    
+
+
+
+
+    window.myFunction(formated_name,formated_street,openingHoursText);
 
     infowindowContent.children["place-address"].textContent =
       place.formatted_address;
@@ -421,7 +443,7 @@ elementToChange2.addEventListener("mouseout", () => {
 
 
 
-var info_description = document.getElementById("info_button");
+var info_description = document.getElementById("info_wifi");
 info_description.addEventListener("click", info_desc);
 function info_desc() 
 {
@@ -433,15 +455,48 @@ function info_desc()
       }
     }
 }
-const elementToChange3 = document.getElementById("info_button");
+const elementToChange3 = document.getElementById("info_wifi");
 // Add an event listener to change the cursor on hover
 elementToChange3.addEventListener("mouseover", () => {
-  elementToChange3.classList.add("hand-pointer");
+  elementToChange3.style.cursor = "help";
 });
-// Remove the "hand-pointer" class when the mouse leaves the element
+
+// Remove the "help" pointer when the mouse leaves the element
 elementToChange3.addEventListener("mouseout", () => {
-  elementToChange3.classList.remove("hand-pointer");
+  elementToChange3.style.cursor = "default";
 });
+
+
+
+
+var info_description2 = document.getElementById("info_ruido");
+info_description2.addEventListener("click", info_desc2);
+function info_desc2() 
+{
+    var modal = document.getElementById("info_modal2");
+    modal.style.display = "block";
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
+const elementToChange4 = document.getElementById("info_ruido");
+// Add an event listener to change the cursor on hover
+elementToChange4.addEventListener("mouseover", () => {
+  elementToChange4.style.cursor = "help";
+});
+
+// Remove the "help" pointer when the mouse leaves the element
+elementToChange4.addEventListener("mouseout", () => {
+  elementToChange4.style.cursor = "default";
+});
+
+
+
+
+
+
 
 
 
@@ -456,4 +511,19 @@ function maps_search(placeName) {
   // Open a new window or tab with the Google Maps URL
   window.open(googleMapsURL, '_blank');
 }
+
+
+
+function toggleDisplay(element) {
+  const row = element.parentElement.parentElement;
+  const hs = row.querySelector('#hs');
+  if (hs.style.display === 'none') {
+    hs.style.display = 'block';
+  } else {
+    hs.style.display = 'none';
+  }
+}
+
+
+
 

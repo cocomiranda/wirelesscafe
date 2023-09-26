@@ -97,11 +97,8 @@ button {
     padding: 5px;
 }
 
-#img {
-    margin-left: 30px;
-    height: 35px;
-    width: 35px;
-}
+
+
 
 
 
@@ -268,6 +265,13 @@ body {
     border: 2px solid red;
     width: 60%;
 }
+.modal-content2 ul li {
+    text-align: left;
+}
+.modal-content ul li {
+    text-align: left;
+}
+
 
 .hand-pointer {
     cursor: pointer;
@@ -276,7 +280,7 @@ body {
 
 
 
-#info_modal {
+#info_modal, #info_modal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -302,3 +306,21 @@ body {
     border: 2px solid red;
     width: 60%;
 }
+
+
+#img {
+    margin-left: 30px;
+    height: 35px;
+    width: 35px;
+}
+#icon_map, #icon_hours{
+    height: 25px;
+    width: 25px;
+}
+.dark #icon_hours {
+    filter: invert(100%);
+}
+.dark #icon_map {
+    filter: invert(100%);
+}
+

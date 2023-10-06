@@ -72,7 +72,8 @@
 
           <label for="provinces">Provincia:&nbsp</label>
           <select id="provinces" name="provinces" onchange="showCities()">
-            <option value="" disabled selected>-</option></select>
+            <option value="" disabled selected>-</option>
+          </select>
           <br><br>
           <label for="cities">Barrio / Localidad:&nbsp</label>
           <select id="cities" name="cities"></select>
@@ -300,11 +301,15 @@
     var calle;
     var registro;
     var horarios;
+    var usuarios;
+    var number;
 
-    function values(cafe,direc,horario) {
+    function values(cafe, direc, horario, telefono) {
       nombre = cafe;
       calle = direc;
       horarios = horario;
+      usuarios = reviews;
+      number = telefono;
       document.getElementById("coffee-name").textContent = nombre;
       document.getElementById("street").textContent = calle;
       registro = (nombre + ", " + calle).replace(".","");
@@ -320,17 +325,15 @@
     var ruido = document.getElementById("noise-level");
     var provincia = document.getElementById("provinces");
     var hours = horarios;
-    // console.log(nombre.textContent)
-    // console.log(calle.textContent)
-    // console.log(barrio.value)
-    // console.log(wifi.value)
-    // console.log(provincia.value)
+    var phone = number;
+    var contador = usuarios;
+    
     // var registro = "12345"; // Replace with the actual value of registro
 
 
     var cafesRef = ref(db, "cafes");
-    // if (nombre.textContent == "" || wifi.value == "" || ruido.value == "" || barrio.value == "" || provincia.value == "") {
-    if (nombre.textContent == "" ) {
+    if (nombre.textContent == "" || wifi.value == "" || ruido.value == "" || barrio.value == "" || provincia.value == "") {
+    // if (nombre.textContent == "" ) {
       alert("Completar todos los campos.");
       return false;
     } else {
@@ -342,33 +345,36 @@
           var newWifi = (existingWifi + parseFloat(wifi.value)) / 2;
           var existingRuido = parseFloat(existingData.Ruido);
           var newRuido = (existingRuido + parseFloat(ruido.value)) / 2;
+          var existingContador = existingData.Users;
+          var newContador = existingContador + 1;
 
           update(child(cafesRef, registro), {
             Name: nombre.textContent,
             Wifi: newWifi,
             Ruido: newRuido,
-            Street: calle.textContent,
-            Neigbourhood: barrio.value,
-            Province: provincia.value,
-            Horarios: hours
+            // Street: calle.textContent,
+            // Neigbourhood: barrio.value,
+            // Province: provincia.value,
+            // Horarios: hours,
+            // Phone: phone,
+            Users: newContador
           })
           .then(() => {
             alert("Datos agregados correctamente.");
             const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
             const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-            const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (wifi.value) + ' - ' + (ruido.value) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
-
+            const message = '[Firebase] - Update - ' + (nombre.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
-              .then(response => {
-                if (response.ok) {
-                  console.log('Message sent successfully!');
-                } else {
-                  console.error('Failed to send message.');
-                }
-              })
-              .catch(error => {
-                console.error('Error sending message:', error);
-              });
+              // .then(response => {
+              //   if (response.ok) {
+              //     console.log('Message sent successfully!');
+              //   } else {
+              //     console.error('Failed to send message.');
+              //   }
+              // })
+              // .catch(error => {
+              //   console.error('Error sending message:', error);
+              // });
 
           })
           .catch((error) => {
@@ -377,6 +383,7 @@
         } else {
           // Insert the data
           // console.log(registro)
+          newContador = 1;
           set(child(cafesRef, registro), {
             Name: nombre.textContent,
             Wifi: wifi.value,
@@ -384,7 +391,9 @@
             Street: calle.textContent,
             Neigbourhood: barrio.value,
             Province: provincia.value,
-            Horarios: hours
+            Horarios: hours,
+            Phone: phone,
+            Users: newContador
           })
           .then(() => {
             alert("Datos agregados correctamente.");
@@ -392,21 +401,22 @@
           .catch((error) => {
             alert(error);
           });
+          
           const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
           const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-          const message = '[Firebase] - ' + (nombre.textContent) + ' - ' + (wifi.value) + ' - ' + (ruido.value) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
+          const message = '[Firebase] - New - ' + (nombre.textContent) + ' - ' + (calle.textContent) + ' - ' + (barrio.value) + ' - ' + (provincia.value); // Replace with the message you want to send
 
           fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
-              .then(response => {
-                if (response.ok) {
-                  console.log('Message sent successfully!');
-                } else {
-                  console.error('Failed to send message.');
-                }
-              })
-              .catch(error => {
-                console.error('Error sending message:', error);
-              });
+              // .then(response => {
+              //   if (response.ok) {
+              //     console.log('Message sent successfully!!!!!');
+              //   } else {
+              //     console.error('Failed to send message.');
+              //   }
+              // })
+              // .catch(error => {
+              //   console.error('Error sending message:', error);
+              // });
         }
       });
     }      
@@ -430,9 +440,9 @@
     sortedData.sort((a, b) => b.Wifi - a.Wifi);
 
 
-    function logHorarios(horarios) {
-      console.log(horarios);
-    }
+    // function logHorarios(horarios) {
+    //   console.log(horarios);
+    // }
 
     
     sortedData.forEach((data) => {
@@ -454,31 +464,64 @@
 
       // <td id="hs">${addLineBreaksToOpeningHours(data.Horarios)}</td>
       // onclick="logHorarios('${data.Horarios}')"
+
+      // onclick="maps_search('${data.Name}')"
       
       tr.innerHTML += `
-        <td>${data.Name}</td>
+        <td>${data.Name} </td>
         <td class="stars">${wifiCell.textContent}</td>
         <td class="stars">${ruidoCell.textContent}</td>
 
-        <td style="min-width: 60px;">
+        <td style="min-width: 70px; vertical-align: middle;">
           <span
-            onclick="maps_search('${data.Name}')"
+            onclick="toggleMap(this);"
             src="map.png"
             onmouseover="this.classList.add('hand-pointer')"
             onmouseout="this.classList.remove('hand-pointer')"
           >
             <img id="icon_map" src="map.png">
           </span>
+         
           <span
               src="time.png"
-              onmouseover="this.classList.add('hand-pointer')"
-              onmouseout="this.classList.remove('hand-pointer')"
-              onclick="toggleDisplay(this);"
+              onclick="toggleHours(this);"
           >
               <img id="icon_hours" src="time.png">
           </span>
-          <span id="hs" style="display: none;">${addLineBreaksToOpeningHours(data.Horarios)}</span>
+          
+          <span
+              src="phone.png"
+              onclick="togglePhone(this);"
+          >
+              <img id="icon_phone" src="phone.png">
+          </span>
 
+          <span id="reviews" style:"vertical-align: middle;" >&nbsp${data.Users}&nbsp<img id="icon_user" src="user.png"></span>
+          
+          
+          <span id="hs" style="display: none; vertical-align: middle;">${addLineBreaksToOpeningHours(data.Horarios)}</span>
+          <br>
+          <span id="address" style="display: none; vertical-align: middle;">
+              <br>
+              ${data.Street}
+              <br>
+              <span style="font-size: 12px; font-style: italic;"
+              onmouseover="this.classList.add('hand-pointer'); this.style.color='red';"
+              onmouseout="this.classList.remove('hand-pointer'); this.style.color='';"
+              onclick="maps_search('${data.Name}')"
+              >
+              Ir Ahora
+              </span>
+              <br>
+          </span>
+
+          <span id="phone" style="display: none; vertical-align: middle;"
+              onclick="makePhoneCall('${data.Phone}')" 
+              onmouseover="this.classList.add('hand-pointer'); this.style.color='red';"
+              onmouseout="this.classList.remove('hand-pointer'); this.style.color='';"
+              >
+              <br>${(data.Phone)}<br>
+          </span>
         </td>
 
 
@@ -506,20 +549,10 @@
     }
 
 
-
-
-
-    
-
-
-
-
   });
 
 
     
-
-
   
   </script>
 

@@ -339,14 +339,39 @@ body {
     height: 35px;
     width: 35px;
 }
-#icon_map, #icon_hours{
-    height: 25px;
-    width: 25px;
+#icon_map, #icon_hours, #icon_phone {
+    height: 20px;
+    width: 20px;
 }
-.dark #icon_hours {
+#icon_user {
+    height: 13px;
+    width: 13px;
+    vertical-align: middle;
+    padding-bottom: 3px;
+    margin-left: -3px;
+}
+#reviews, #phone {
+    font-size: 12px;
+    /* vertical-align: middle; */
+} 
+
+
+
+.dark #icon_hours, #icon_map, #icon_user, #icon_phone {
     filter: invert(100%);
 }
-.dark #icon_map {
-    filter: invert(100%);
+
+
+
+#modal_map {
+    display: none;
+    position: absolute;
+    background-color: red;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Ensure the modal appears in front of everything */
 }
+
+
 

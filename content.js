@@ -21,7 +21,7 @@ function initMap() {
   const biasInputElement = document.getElementById("use-location-bias");
   const strictBoundsInputElement = document.getElementById("use-strict-bounds");
   const options = {
-    fields: ["formatted_address", "geometry", "name", "opening_hours"],
+    fields: ["formatted_address", "geometry", "name", "opening_hours", "formatted_phone_number"],
     strictBounds: false,
     types: ["establishment"],
   };
@@ -79,12 +79,10 @@ function initMap() {
     marker.setVisible(true);
     infowindowContent.children["place-name"].textContent = place.name;
     
-    
 
     const formated_name = (place.name).replace(".","")
     const index = place.formatted_address.indexOf(', ', 0);
     const formated_street = (place.formatted_address.substring(0, index)).replace(".","")
-
 
 
     const openingHours = place.opening_hours;
@@ -95,14 +93,20 @@ function initMap() {
       openingHoursText += "Not available";
     }
 
+    if (place.formatted_phone_number) {
+      const phone = (place.formatted_phone_number).replace(/^0/, '+54 ');
+    } else {
+      const phone = "No Disponible";
+    }
 
-    
-    
+    // const phone = (place.formatted_phone_number).replace(/^0/, '+54 ');;
 
 
 
 
-    window.myFunction(formated_name,formated_street,openingHoursText);
+
+
+    window.myFunction(formated_name,formated_street,openingHoursText,phone);
 
     infowindowContent.children["place-address"].textContent =
       place.formatted_address;
@@ -130,6 +134,7 @@ else if (theme == 'dark') {
 }
 
 var os = navigator.userAgent;
+
 
 if (os.includes('iPhone') || os.includes('Android')) {
   var sistema = 'mobile';
@@ -504,24 +509,79 @@ elementToChange4.addEventListener("mouseout", () => {
 function maps_search(placeName) {
   // Replace spaces in the placeName with '+' signs
   const query = placeName.replace(/\s+/g, '+');
-
   // Construct the Google Maps search URL
   const googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${query}`;
-  
   // Open a new window or tab with the Google Maps URL
   window.open(googleMapsURL, '_blank');
+  placeName = "";
 }
 
 
-function toggleDisplay(element) {
+function toggleHours(element) {
   const row = element.parentElement.parentElement;
   const hs = row.querySelector('#hs');
   const tdElement = element.closest('td'); // Find the closest <td> element
-
+  // Get all elements with the same IDs ('address' and 'hs') in the document
+  const allElements = document.querySelectorAll('#address, #hs, #phone');
+  // Loop through all address and hs elements and hide them except the ones in the current row
+  allElements.forEach(function (element) {
+    if (element !== hs) {
+      element.style.display = 'none';
+    }
+  });
   if (hs.style.display === 'none') {
     hs.style.display = 'block';
     // Set the width to 50% when showing the hidden content
-    tdElement.style.width = '40%';
+    tdElement.style.width = '25%';
+  } else {
+    hs.style.display = 'none';
+    // Reset the width when hiding the content
+    tdElement.style.width = '';
+  }
+}
+
+
+
+function toggleMap(element) {
+  const row = element.parentElement.parentElement;
+  const hs = row.querySelector('#address');
+  const tdElement = element.closest('td'); // Find the closest <td> element
+  // Get all elements with the same IDs ('address' and 'hs') in the document
+  const allElements = document.querySelectorAll('#address, #hs, #phone');
+  // Loop through all address and hs elements and hide them except the ones in the current row
+  allElements.forEach(function (element) {
+    if (element !== hs) {
+      element.style.display = 'none';
+    }
+  });
+  if (hs.style.display === 'none') {
+    hs.style.display = 'block';
+    // Set the width to 50% when showing the hidden content
+    tdElement.style.width = '20%';
+  } else {
+    hs.style.display = 'none';
+    // Reset the width when hiding the content
+    tdElement.style.width = '';
+  }
+}
+
+
+function togglePhone(element) {
+  const row = element.parentElement.parentElement;
+  const hs = row.querySelector('#phone');
+  const tdElement = element.closest('td'); // Find the closest <td> element
+  // Get all elements with the same IDs ('address' and 'hs') in the document
+  const allElements = document.querySelectorAll('#address, #hs, #phone');
+  // Loop through all address and hs elements and hide them except the ones in the current row
+  allElements.forEach(function (element) {
+    if (element !== hs) {
+      element.style.display = 'none';
+    }
+  });
+  if (hs.style.display === 'none') {
+    hs.style.display = 'block';
+    // Set the width to 50% when showing the hidden content
+    tdElement.style.width = '20%';
   } else {
     hs.style.display = 'none';
     // Reset the width when hiding the content
@@ -566,4 +626,18 @@ document.getElementById("mensajeForm").addEventListener("submit", function(event
 
 
 
+
+// const userLanguageCode = navigator.language;
+// const languageNames = new Intl.DisplayNames([navigator.language], { type: 'language' });
+// const userLanguageName = languageNames.of(userLanguageCode);
+
+// console.log(`The user's preferred language is: ${userLanguageName} (${userLanguageCode})`);
+
+
+
+
+function makePhoneCall(phoneNumber) {
+  // Use the tel: URI scheme to trigger a phone call
+  window.location.href = "tel:" + phoneNumber;
+}
 

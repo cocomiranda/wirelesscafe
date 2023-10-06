@@ -175,6 +175,7 @@ function filterTable() {
       var row = table.rows[i];
       row.cells[4].style.display = "table-cell";
       row.cells[5].style.display = "none";
+      row.cells[3].style.display = "table-cell";
     }
   }
   if (filterProvince !== "" && filterCity !== "") {
@@ -240,7 +241,6 @@ function showAllRows() {
   inputCity.disabled = true;
   
   var table = document.getElementById("cafe-data");
-
   const tableHead = document.querySelector("#cafe-data thead");
   const tableBody = document.querySelector("#cafe-data tbody");
   tableHead.style.display = "";
@@ -254,8 +254,12 @@ function showAllRows() {
     // Loop through all cells (td elements) in the row
     for (var j = 0; j < row.cells.length; j++) {
       var cell = row.cells[j];
-      // Set the display style to "table-cell" to show the cell
-      cell.style.display = "table-cell";
+   
+      if (j === 3) {
+        cell.style.display = "none"; // Hide the cell
+      } else {
+        cell.style.display = "table-cell"; // Show the other cells
+      }
     }
   }
   

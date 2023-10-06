@@ -194,7 +194,7 @@
               <th>Cafetería</th>
               <th id="info_wifi">Calidad WiFi</th>
               <th id="info_ruido">Nivel Ruido</th>
-              <th>Información</th>
+              <th id="info">Información</th>
               <!-- <th>Horarios</th> -->
               <th>Barrio / Localidad</th>
               <th>Provincia</th>
@@ -472,7 +472,7 @@
         <td class="stars">${wifiCell.textContent}</td>
         <td class="stars">${ruidoCell.textContent}</td>
 
-        <td style="min-width: 70px; vertical-align: middle;">
+        <td style="min-width: 70px; vertical-align: middle; display: none;">
           <span
             onclick="toggleMap(this);"
             src="map.png"

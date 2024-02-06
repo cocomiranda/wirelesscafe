@@ -604,6 +604,7 @@ document.getElementById("mensajeForm").addEventListener("submit", function(event
   var texto = document.getElementById("texto").value;
 
   // Puedes realizar acciones con los valores aquí, como enviarlos a un servidor o mostrarlos en la página
+  alert("Mensaje enviado correctamente");
   // console.log("Nombre: " + nombre + "\nMensaje: " + texto);
 
   const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token

@@ -355,12 +355,14 @@ body {
     /* vertical-align: middle; */
 } 
 
-
-
-.dark #icon_hours, #icon_map, #icon_user, #icon_phone {
-    filter: invert(100%);
+.light #icon_hours, #icon_map, #icon_user, #icon_phone {
+    filter: none; /* No inversion for light theme */
 }
 
+.dark #icon_hours, .dark #icon_map, .dark #icon_user, .dark #icon_phone {
+    filter: invert(100%) brightness(100%) sepia(0%); /* Ensure icons are white */
+    color: white; /* Optional, in case icons are styled with color property */
+}
 
 
 #modal_map {

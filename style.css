@@ -377,3 +377,7 @@ body {
 
 
 
+tr:hover {
+    background: silver;
+    color: #14202b;
+}

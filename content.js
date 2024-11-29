@@ -1,8 +1,4 @@
 
-const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
-const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
-const message = '[workncoffee]' 
-fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
 
 
 window.initMap = initMap;
@@ -16,6 +12,11 @@ window.initMap = initMap;
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initMap() {
+  const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
+  const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
+  const message = '[workncoffee]' 
+  fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.61315, lng: -58.37723 },
     zoom: 13,

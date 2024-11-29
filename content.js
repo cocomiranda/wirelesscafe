@@ -1,4 +1,9 @@
 
+const token = '6692167095:AAFxJv9mw2T0XYaREP4F9aTi70qZmDASMpU'; 
+const chatId = '-4578386742'; 
+const message = '[workncoffee]' 
+fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+
 
 window.initMap = initMap;
 

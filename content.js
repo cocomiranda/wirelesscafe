@@ -1,6 +1,6 @@
 
-const token = '6692167095:AAFxJv9mw2T0XYaREP4F9aTi70qZmDASMpU'; 
-const chatId = '-4578386742'; 
+const token = '6086969047:AAG9RlsqrusNHjqBMmR2Cp4W1WikjksEfQU'; // Replace with your Telegram bot token
+const chatId = '-1001821689872'; // Replace with the chat ID of the user or group you want to send the message to
 const message = '[workncoffee]' 
 fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
 
